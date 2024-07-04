@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+   <title>Doctor Dashboard</title>
+
+   <!-- Google Fonts -->
+   <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet" />
+      {% load static %}
+   <!-- Vendor CSS Files -->
+   <link rel="stylesheet" href="../static/doctor_app/vendor/animate.css/animate.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/bootstrap/css/bootstrap.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/bootstrap-icons/bootstrap-icons.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/boxicons/css/boxicons.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/fontawesome-free/css/all.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/glightbox/css/glightbox.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/remixicon/remixicon.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/swiper/swiper-bundle.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/css/evo-calendar.min.css" >
+   <link rel="stylesheet" href="../static/doctor_app/css/evo-calendar.midnight-blue.min.css" >
+   <link rel="stylesheet" href="../static/doctor_app/css/home.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/css/style.css"/>
+
+   <link href="{% static 'doctor_app/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/remixicon/remixicon.css' %}" rel="stylesheet" />
+   <link href="{% static 'doctor_app/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet" />
+   <link rel="stylesheet" href="{% static 'doctor_app/css/evo-calendar.min.css' %}" >
+   <link rel="stylesheet" href="{% static 'doctor_app/css/evo-calendar.midnight-blue.min.css' %}" >
+   <link rel="preconnect" href="https://fonts.googleapis.com" >
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+
+   <!-- Template Main CSS File -->
+   <link rel="stylesheet" href="{% static 'doctor_app/css/home.css' %}"/>
+   <link rel="stylesheet" href="{% static 'doctor_app/css/style.css' %}"/>
+</head>
+
+<body>
+   
+   <header id="header" class="sticky-top d-flex px-5 align-items-center">
+  
+      <h1 class="logo me-auto">
+         <a href="index.html">
+           <img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1720031430/careplus_jl8edu.png" alt="">
+           <div class="logoTitle">
+             <p>CARE PLUS</p>
+             <p class="caption">Enhancing Life, Ensuring Care</p>
+           </div>
+         </a>
+       </h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+         <ul>
+            <li><a class="nav-link scrollto active" data-section="home" href="#home">Home</a></li>
+            <li><a class="nav-link scrollto" data-section="patient" href="#patient">Patients</a></li>
+            <li><a class="nav-link scrollto" data-section="calendarpage" href="#calendarpage">Calender</a></li>
+            <li><a class="nav-link scrollto" data-section="alerts" href="#alerts">Alerts</a></li>
+            <li><button type="button" onclick="logout()" class="logout">Log out</button></li>
+         </ul>
+         <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+   </header>
+   <section id="home" class="content align-items-center active">
+      <div class="homeContainer">
+         <h1>Welcome to Master<br>Health Check-Up</h1>
+         <h2>We are team of Specialized Doctors.<br>"Your devotion and care bring healing, comfort and hope."</h2>
+         <a class="btn-get-started scrollto">Learn More</a>
+      </div>
+   </section>
+   <div class="content" id="patient">
+      <div class="inpatient">
+         <h3>Patient Details</h3>
+         <div class="tableCont">
+            <table id="patientTable" class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>S.No</th>
+                     <th>Patient Name</th>
+                     <th>Date</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody id="inpatientList">
+                  {% for i in view_patients %}
+                  <tr>
+                     <td> {{ forloop.counter }} </td>
+                     <td>{{i.p_name}} </td>
+                     <td>{{i.date}} </td>
+                     <td><button onclick="openPopup()" type="submit" class="view">View</button></td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div class="popup" id="popupWindow">
+         <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <div class="updateDetails">               
+               <div class="updateDetailsLeft">
+                  <div class="updateDataholder">
+                     <label for="updatePname">Patient Name:</label>
+                     <input type="text" value="Vamsi Krishna" id="updatePname" name="updatePname" readonly>
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="updateSymptoms">Symptoms:</label>
+                     <textarea name="updateSymptoms" id="updateSymptoms" rows="2">Head Ache, Stomach Ache</textarea>
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="updateJdate">Join Date:</label>
+                     <input value="2024-07-02" type="date" name="updateJdate" id="updateJdate">
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="reportView">Reports</label>
+                     <button id="reportView" class="view" onclick="viewRow()">view</button>
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="updateHistory">Medical History:</label>
+                     <textarea name="updateHistory" id="updateHistory" rows="3"></textarea>
+                  </div>
+               </div>
+               <div class="updateDetailsRight">
+                  <div class="updateDataholder">
+                     <label for="updatePlan">Current Treatment Plan:</label>
+                     <input type="text" id="updatePlan" name="updatePlan">
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="updateMed">Medication:</label>
+                     <textarea name="updateMed" id="updateMed" rows="3"></textarea>
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="updateNote">Progress Note:</label>
+                     <textarea name="updateNote" id="updateNote" rows="3"></textarea>
+                  </div>
+                  <div class="updateDataholder">
+                     <label for="updateStatus">Completely Recovered:</label>
+                     <div class="statusCont">
+                        <div class="recoveryStatus">
+                           <input type="radio" value="true" name="status" id="yes">
+                           <label for="yes">yes</label>
+                        </div>
+                        <div class="recoveryStatus">
+                           <input type="radio" value="false" name="status" id="no">
+                           <label for="no">no</label>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <form action="{% url 'doctor_patient_details_fun' %}" method="post">{% csrf_token %}<button type="button" class="updateDetailsBtn">Update</button></form>
+          </div>
+      </div>
+   </div>
+   <div class="content" id="calendarpage">
+      <div id="calendar" class="calendarCont"></div>
+   </div>
+   <div class="content" id="alerts">
+      <div class="alertCont">
+         <div class="alertTable">
+            <table class="table table-bordered text-center">
+               <thead>
+                  <tr>
+                     <th>S.No.</th>
+                     <th>Patient</th>
+                     <th>Date</th>
+                     <th>Time</th>
+                     <th>Symtoms</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  
+                  <tr>
+                     <td>1</td>
+                     <td>John Doe</td>
+                     <td>26-06-2024</td>
+                     <td>12:45 PM</td>
+                     <td>Fever, Cough, Cold</td>
+                     <td><button class="view">Accept</button></td>
+                  </tr>
+                  <tr>
+                     <td>2</td>
+                     <td>Will Smith</td>
+                     <td>27-06-2024</td>
+                     <td>3:10 PM</td>
+                     <td>Body pains, Fever</td>
+                     <td><button class="view">Accept</button></td>
+                  </tr>
+                  <tr>
+                     <td>3</td>
+                     <td>Tony Stark</td>
+                     <td>28-06-2024</td>
+                     <td>10:20 AM</td>
+                     <td>Head Ache, Stomach Ache</td>
+                     <td><button class="view">Accept</button></td>
+                  </tr>
+                  <tr>
+                     <td>4</td>
+                     <td>John Doe</td>
+                     <td>28-06-2024</td>
+                     <td>5:40 PM</td>
+                     <td>Vomits, Cough</td>
+                     <td><button class="view">Accept</button></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="alertScroll">
+            {% for alert in alerts_list %}
+            <div class="alertCard">
+               <div class="alertCardData">
+                  <label>Patient Name:</label>
+                  <p>{{alert.username}}</p>
+               </div>
+               <div class="alertCardData">
+                  <label>Phone Number:</label>
+                  <p>{{alert.mobile}}</p>
+               </div>
+               <div class="alertCardData">
+                  <label>Action:</label>
+                  <p><button class="view">Accept</button></p>
+               </div>
+            </div>
+            {% endfor %}
+            
+         </div>
+      </div>
+   </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="viewModalLabel">Report Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div id="modalContent">
+                    <div class="modalData">
+                      <label for="updateReportPname">Patient Name:</label>
+                      <input type="text" name="updateReportPname" id="updateReportPname" readonly>
+                    </div>
+                    <div class="modalData">
+                      <label for="updateReportRefDoc">Ref Doctor:</label>
+                      <input type="text" name="updateReportRefDoc" id="updateReportRefDoc" readonly>
+                    </div>
+                    <div class="modalData">
+                      <label for="updateReportDob">DOB:</label>
+                      <input type="date" name="updateReportDob" id="updateReportDob" readonly>
+                    </div>
+                    <div class="modalData">
+                      <label for="updateReportGender">Gender:</label>
+                      <input type="text" name="updateReportGender" id="updateReportGender" readonly>
+                    </div>
+                    <div class="modalData">
+                      <label for="updateReportVisitDate">Visit Date:</label>
+                      <input type="date" name="updateReportVisitDate" id="updateReportVisitDate" readonly>
+                    </div>
+                    <div class="modalData">
+                      <label for="updateReportPhone">Phone Number:</label>
+                      <input type="number" name="updateReportPhone" id="updateReportPhone" readonly>
+                    </div>
+                    <div class="modalData">
+                      <label for="updateReportEmail">Email:</label>
+                      <input type="email" name="updateReportEmail" id="updateReportEmail" readonly>
+                    </div>
+                      <hr>
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>Test Name</th>
+                                  <th>Result</th>
+                                  <th>Bio Reference</th>
+                                  <th>Units</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>Platlets Count</td>
+                                  <td>80</td>
+                                  <td>120</td>
+                                  <td>mg/dL</td>
+                              </tr>
+                              <tr>
+                                  <td>Typhoid</td>
+                                  <td>negative</td>
+                                  <td>negative/positive</td>
+                                  <td>-</td>
+                              </tr>
+                              <tr>
+                                  <td>Plasma Count</td>
+                                  <td>7.6</td>
+                                  <td>6.4-8.3
+                                    <td>g/dL</td>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <input type="hidden" id="logout-url" value="{% url 'doctor_logout_fun' %}">
+   <input type="hidden" id="logout-url" value="{% url 'doctor_logout_fun' %}">
+   <script src="../static/doctor_app/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../static/doctor_app/vendor/glightbox/js/glightbox.min.js"></script>
+   <script src="../static/doctor_app/vendor/purecounter/purecounter.js"></script>
+   <script src="../static/doctor_app/vendor/swiper/swiper-bundle.min.js"></script>
+   <script src="../static/doctor_app/js/evo-calendar.min.js"></script>
+   <script src="../static/doctor_app/js/script.js"></script>
+   <script src="../static/doctor_app/js/calendar.js"></script>
+
+    <script src="{% static 'doctor_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'doctor_app/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'doctor_app/vendor/purecounter/purecounter.js' %}"></script>
+    <script src="{% static 'doctor_app/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
+    <script src="{% static 'doctor_app/js/evo-calendar.min.js' %}"></script>
+
+   <!-- Template Main JS File -->
+   <script src="{% static 'doctor_app/js/script.js' %}"></script>
+   <script src="{% static 'doctor_app/js/calendar.js' %}"></script>
+   <script>
+      
+      function logout(){
+          const logoutUrl = document.getElementById('logout-url').value;
+          window.location.href = logoutUrl;
+      }
+      
+   </script>
+
+</body>
+
+</html>

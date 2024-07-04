@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Master Health Check-up</title>
+  {% load static %}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'labtech/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'labtech/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  {% load static %}
+  <link href="{% static 'labtech/css/style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'labtech/css/container.css' %}">
+
+  <style>
+    .welcome-text {
+      text-align: left;
+      margin-top: 50px;
+      color:#2c4964;
+     }
+  </style>
+</head>
+
+<body>
+  <div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center">
+        
+        <h1 class="logo me-auto"><a href="index.html">Master Health Check-Up</a></h1>
+      
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li class="nav-item"><a class="nav-link " data-section="landing" href="#landing">Home</a></li>
+            <li class="nav-item"><a class="nav-link" data-section="report" href="#report">Reports Lists</a></li>
+            <li class="nav-item">
+              <a class="nav-link " onclick="logout()">Logout</a>
+            </li>
+          </ul>
+        </nav><!-- .navbar -->
+      </div>
+    </header>
+
+    <div class="subPage active" id="landing">
+      <div class="container welcome-text">
+        <h1>Welcome to Care Plus Laboratory</h1>
+        <h6>At Care Plus, we are committed to enhancing life and ensuring care through our state-of-the-art laboratory services.<br> Our laboratory is equipped with the latest technology and highly trained professionals  and timely results.</h6>
+        <h1>Enhancing Life, Ensuring Care</h1>
+        <h6>Our mission is to support your health journey with reliable laboratory services that you can trust.</h6>
+      </div>
+    </div>
+
+    <div class="subPage" id="report">
+      <div class="container">
+      
+        <div class="tableHolder">
+          <table class="table table-striped mt-4" id="dataTable" action="report_list">
+            <thead>
+              <tr>
+                <th>RID</th>
+                <th>Patient name</th>
+                <th>Doctor Name</th>
+                <th>Test Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for k in appointment_list %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{k.name}}</td>
+                <td>{{ k.doctor }}</td>
+                <td>{{ k.test_name }}</td>
+                <td>{{ k.date }}</td>
+                <td>Received</td>
+                <td><button class="btn btn-outline-info" onclick="viewRow(this)">View</button></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewModalLabel">Report Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          {% for k in appointment_list %}
+          <div class="modal-body">
+            <div id="modalContent" action="patient_indvidual_record">
+              <div class="modalData">
+                <label for="reportPname">Patient Name:</label>
+                <input type="text" name="reportPname" id="reportPname" value="{{k.name}}" readonly>
+              </div>
+              <div class="modalData">
+                <label for="reportDob">DOB:</label>
+                <input type="text" name="reportDob" id="reportDob" value="{{report.dofb}}" readonly>
+              </div>
+              <div class="modalData">
+                <label for="reportGender">Gender:</label>
+                <input type="text" name="reportGender" id="reportGender" value="{{report.gender}}" readonly>
+              </div>
+              <div class="modalData">
+                <label for="reportVisitDate">Visit Date:</label>
+                <input type="text" name="reportVisitDate" id="reportVisitDate" value="{{report.date}}" readonly>
+              </div>
+              <div class="modalData">
+                <label for="reportPhone">Phone Number:</label>
+                <input type="number" name="reportPhone" id="reportPhone" value="{{report.phone}}" readonly>
+              </div>
+              <div class="modalData">
+                <label for="reportEmail">Email:</label>
+                <input type="email" name="reportEmail" id="reportEmail" value="{{report.email}}" readonly>
+              </div>
+              <hr>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Test Name</th>
+                    <th>Result</th>
+                    <th>Bio Reference</th>
+                    <th>Units</th>
+                  </tr>
+                </thead>
+                <form action="../result_report/" id="saveReport" method="post"></form>
+                <tbody>
+                  <tr>
+                    <td>Platlets Count</td>
+                    <td><input type="text" form="saveReport" class="resultInpt" name="result1"></td>
+                    <td>120</td>
+                    <td>mg/dL</td>
+                  </tr>
+                  <tr>
+                    <td>Typhoid</td>
+                    <td><input type="text" form="saveReport" class="resultInpt" name="result2"></td>
+                    <td>negative/positive</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td>Plasma Count</td>
+                    <td><input type="text" form="saveReport" class="resultInpt" name="result3"></td>
+                    <td>6.4-8.3</td>
+                    <td>g/dL</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="logout-url" value="{% url 'lab_logout' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const navbarLinks = document.querySelectorAll('.navbar a');
+      const contentSections = document.querySelectorAll('.subPage');
+
+      navbarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const sectionId = link.getAttribute('data-section');
+          contentSections.forEach(section => {
+            section.classList.remove('active');
+          });
+          document.getElementById(sectionId).classList.add('active');
+        });
+      });
+
+      function viewRow(button) {
+        const row = button.parentNode.parentNode;
+        const status = row.cells;
+        console.log(status);
+
+        const modal = new bootstrap.Modal(document.getElementById('viewModal'));
+        modal.show();
+      }
+      function logout(){
+          const logoutUrl = document.getElementById('logout-url').value;
+          window.location.href = logoutUrl;
+      }
+      window.onload = function() {
+
+if (!sessionStorage.getItem('refreshed')) {
+  sessionStorage.setItem('refreshed', 'true');
+  location.reload();
+}
+};
+      
+    </script>
+  </div>
+</body>
+</html>

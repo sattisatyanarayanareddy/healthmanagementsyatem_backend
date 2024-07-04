@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Master Health Check-up</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  {% load static %}
+  <!-- Vendor CSS Files -->
+   <link rel="stylesheet" href="../static/hospital_app/vendor/animate.css/animate.min.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/bootstrap/css/bootstrap.min.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/bootstrap-icons/bootstrap-icons.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/boxicons/css/boxicons.min.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/fontawesome-free/css/all.min.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/glightbox/css/glightbox.min.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/remixicon/remixicon.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/vendor/swiper/swiper-bundle.min.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/css/evo-calendar.min.css" >
+   <link rel="stylesheet" href="../static/hospital_app/css/evo-calendar.midnight-blue.min.css" >
+   <link rel="preconnect" href="https://fonts.googleapis.com" >
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"/>
+
+   <!-- Template Main CSS File -->
+   <link rel="stylesheet" href="../static/hospital_app/css/home.css"/>
+   <link rel="stylesheet" href="../static/hospital_app/css/style.css"/>
+   <link href="{% static 'hospital_app/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'hospital_app/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="{% static 'hospital_app/css/home.css' %}">
+  <link href="{% static 'hospital_app/css/style.css' %}" rel="stylesheet">
+  <style>
+    .logout {
+      border: none;
+      background-color: #40BBC0;
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: background-color 0.5s;
+    }
+
+    .logout:hover {
+      background-color: #f00;
+    }
+
+    .upComingTable {
+      width: 500px;
+    }
+
+    .upComingTable th {
+      background-color: #3fbbc0;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="chat-icon" onclick="toggleChatbot()"><img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1720059713/chat-bot_3_pnno68.png" alt="Chat Icon"></div>
+    <div id="chatbot-popup" class="hidden">
+        <div id="chatbot-container">
+            <div id="chat-header">
+                <span id="close-chatbot" onclick="toggleChatbot()">✖</span>
+            </div>
+            <div id="chat-window">
+                <div id="chat-output">
+                </div>
+            </div>
+            <div class="userInptCont">
+                <div class="tar">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                    <button id="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- ======= Header ======= -->
+  <header id="header" class="sticky-top d-flex px-5 align-items-center">
+      
+    <h1 class="logo me-auto">
+      <a href="index.html">
+        <img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1720031430/careplus_jl8edu.png" alt="">
+        <div class="logoTitle">
+          <p>CARE PLUS</p>
+          <p class="caption">Enhancing Life, Ensuring Care</p>
+        </div>
+      </a>
+    </h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" data-section="home" href="#home">Home</a></li>
+          <div class="book">
+            <li><a class="nav-link scrollto" data-section="book" href="#book">Appointments</a></li>
+            <div class="bookCont">
+              <a data-section="book" data-id="bookAppointment" class="historyLink">Book Appointments</a>
+              <a data-section="book" data-id="upcomingAppointment" class="historyLink">Upcoming Appointments</a>
+            </div>
+          </div>
+          <li><a class="nav-link scrollto" data-section="doctor" href="#doctor">Doctors</a></li>
+          <div class="history">
+            <li><a class="nav-link scrollto" data-section="appointment" href="#appointment">History</a></li>
+            <div class="historyCont">
+              <a data-section="appointment" data-id="previous" class="historyLink">Previous Appointments</a>
+              <a data-section="appointment" data-id="reports" class="historyLink">Reports</a>
+              <a data-section="appointment" data-id="prescp" class="historyLink">Prescriptions</a>
+            </div>
+          </div>
+          <li><a class="nav-link scrollto" data-section="checkup" href="#checkup">Master Health Checkup</a></li>       
+          <li><a class="nav-link scrollto" data-section="payment" href="#payment">Payments</a></li>
+          <li><button type="button" class="logout" id="patientLogout" onclick="logout()">Log out</button></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+  </header>
+  
+  <section id="home" class="content align-items-center active">
+    <div class="homeContainer">
+      <h1>Welcome Mr/Mrs {{ name }} <br> Health Check-Up</h1>
+      <h2>We are team of Specialized Doctors.<br>"Your devotion and care bring healing, comfort and hope."</h2>
+      <a class="btn-get-started scrollto">Learn More</a>
+    </div>
+  </section>
+
+    <div class="content" id="book">
+      <div class="historySubPage visible" id="bookAppointment">
+        <div class="registration-form">
+          <h2>Appointment Form</h2>
+          <form action="{% url 'patient_appointment' %}?id={{id}}" id="registration" method="post" class="regForm">
+          {% csrf_token %}
+            <div>
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+              <label for="appDob">DateofBirth:</label>
+              <input type="date" id="appDob" name="dob" required>
+              <label for="gender">Gender</label>
+                  <select id="gender" name="gender" required>
+                      <option value="">Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                  </select>
+              <label for="height">Height:</label>
+              <input type="text" id="height" name="height" required>
+              <label for="weight">Weight:</label>
+              <input type="number" id="weight" name="weight" required>
+            </div>
+            <div>
+              <label for="concern"> Health Concerns: </label>
+              <select id="concern" name="concern" required>
+                      <option value="">Select Health Concerns</option>
+                      <option value="Fever">Fever</option>
+                      <option value="Cough">Cough</option>
+                      <option value="Sore Throat">Sore Throat</option>
+                      <option value="Shortness of Breath">Shortness of breath</option>
+                      <option value="Chest Pain">Chest Pain</option>
+                      <option value="Fatigue">Fatigue</option>
+                      <option value="Headache">Headache</option>
+                      <option value="Body Aches">Body Aches</option>
+                      <option value="Nausea or Vomiting">Nausea or Vomiting</option>
+                      <option value="Diarrhea">Diarrhea</option>
+                      <option value="Abdominal Pain">Abdominal Pain</option>
+                      <option value="Joint Pain">Joint Pain</option>
+                      <option value="Rash">Rash</option>
+                      <option value="Skin Itch">Skin Rash</option>
+              </select>
+              <label for="doctorName"> Doctor: </label>
+              <input type="text" id="doctorName" name="doctor" value="" >
+              <label for="specialization"> Specialization: </label>
+              <input type="text" id="specilization" name="specialization" >
+              <label for="appDate">Date:</label>
+              <input type="date" id="appDate" name="date" required>
+              <label for="time">Time:</label>
+              <select class="timeFrame" name="time" id="time" required>
+                <option>--:--:--</option>
+                <option value="9:00">9:00 AM -- 10:00 AM</option>
+                <option value="10:00">10:00 AM -- 11:00 AM</option>
+                <option value="11:00">11:00 AM -- 12:00 PM</option>
+                <option value="14:00">2:00 PM -- 3:00 PM</option>
+                <option value="15:00">3:00 PM -- 4:00 PM</option>
+                <option value="16:00">4:00 PM -- 5:00 PM</option>
+              </select>
+            </div>
+            
+          </form>
+          <input type="submit" form="registration" value="Submit">
+        </div>
+      </div>
+      <div class="historySubPage upComingCont" id="upcomingAppointment">
+        <h1>Upcoming Appointments</h1>
+        <div class="search-container">
+            <input type="text" id="upSearchInput" placeholder="Search by date, time, or name..." onkeyup="filterUpcomingAppointments(id, 'inpatientList')">
+        </div>
+        <table id="upComingTable" class="upComingTable table table-bordered">
+          <thead>
+            
+            <tr>
+              <th>S.No</th>
+              <th>Doctors Name</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+            
+          </thead>
+          <tbody id="inpatientList">
+            {% for data in data_apointment %}
+             <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{data.d_name}}</td>
+                <td>{{data.date}}</td>
+                <td>{{data.time}}</td>
+             </tr>
+             {% endfor %}
+             
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <div class="content" id="doctor">
+      <h1>Consult Doctor</h1>
+      <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search for doctors..." onkeyup="filterDoctors()">
+      </div>
+      
+      <div class="doctor-container" id="doctorContainer">
+        {% for doc_ap in doctors_list %}  
+        <div class="doctor-card">
+            <div class="docProfile">
+              <img src={{doc_ap.doc_img}} alt="Profile">
+              <h3>{{doc_ap.doc_fname}}</h3>
+              <p>{{doc_ap.doc_spec}}</p>
+            </div>
+            <div class="docDetails">
+              <p>Experience:{{doc_ap.doc_exp}}</p>
+              <button class="chat-button" onclick="openApplication('{{doc_ap.doc_fname}}','{{doc_ap.doc_spec}}')">Consult</button>
+            </div>
+          </div>
+          {% endfor %}
+          
+      </div>
+  </div>
+  <div class="bookDoctorCont">
+    <div class="registration-form">
+      <h2>Appointment Form</h2>
+      <form action="{% url 'doctor_appointment' %}?id={{id}}" id="doc_appoi" method="post" class="regForm">
+          {% csrf_token %}
+        <button class="closeBtn" onclick="closeForm()">&#x2715;</button>
+        <div>
+          <label for="bname">Name:</label>
+          <input type="text" id="bname" name="name" required>
+          <label for="bdob">DateofBirth:</label>
+          <input type="date" id="bdob" name="dob" required>
+          <label for="bgender">Gender</label>
+              <select id="bgender" name="gender" required>
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+              </select>
+          <label for="bheight">Height:</label>
+          <input type="text" id="bheight" name="height" required>
+          <label for="bweight">Weight:</label>
+          <input type="number" id="bweight" name="weight" required>
+        </div>
+        <div>
+          <label for="bconcern"> Health Concerns: </label>
+          <select id="bconcern" name="concern" required>
+                  <option value="">Select Health Concerns</option>
+                  <option value="Fever">Fever</option>
+                  <option value="Cough">Cough</option>
+                  <option value="Sore Throat">Sore Throat</option>
+                  <option value="Shortness of Breath">Shortness of breath</option>
+                  <option value="Chest Pain">Chest Pain</option>
+                  <option value="Fatigue">Fatigue</option>
+                  <option value="Headache">Headache</option>
+                  <option value="Body Aches">Body Aches</option>
+                  <option value="Nausea or Vomiting">Nausea or Vomiting</option>
+                  <option value="Diarrhea">Diarrhea</option>
+                  <option value="Abdominal Pain">Abdominal Pain</option>
+                  <option value="Joint Pain">Joint Pain</option>
+                  <option value="Rash">Rash</option>
+                  <option value="Skin Itch">Skin Rash</option>
+          </select>
+          <label for="bdoctorName"> Doctor: </label>
+          <input type="text" id="bdoctorName" name="doctor" value="" readonly>
+          <label for="bspecilization"> Specialization: </label>
+          <input type="text" id="bspecilization" name="specialization" readonly>
+          <label for="bdate">Date:</label>
+          <input type="date" id="bdate" name="date" required> 
+          <label for="btime">Time:</label>
+          <input type="time" id="btime" name="time" required>
+        </div>
+        
+      </form>
+      <input type="submit" value="Submit" form="doc_appoi">
+    </div>
+  </div>
+
+<div class="content" id="appointment">
+  <div class="historySubPage visible" id="previous">
+    <div class="invoiceCont">
+      <div class="invoiceCard">
+			<button class="closeBtn" onclick="closeInvoice('.invoiceCont')">&#x2715;</button>
+      <h3>Invoice</h3>
+        <div class="details">
+          <div class="patientDetails">
+            <div class="patientData">
+              <label for="invoicePname">Name:</label>
+              <input type="text" name="invoicePname" id="invoicePname" readonly>
+            </div>
+            <div class="patientData">
+              <label for="invoicePage">Age:</label>
+              <input type="text" name="invoicePage" id="invoicePage" readonly>
+            </div>
+            <div class="patientData">
+              <label for="invoicePsex">Sex:</label>
+              <input type="text" name="invoicePsex" id="invoicePsex" readonly>
+            </div>
+            <div class="patientData">
+              <label for="invoicePdate">Date:</label>
+              <input type="text" name="invoicePdate" id="invoicePdate" readonly>
+            </div>
+            <div class="patientData">
+              <label for="invoicePtime">Time:</label>
+              <input type="text" name="invoicePtime" id="invoicePtime" readonly>
+            </div>
+          </div>
+          <div class="hospitalDetails">
+            <div class="docData">
+              <label for="invoiceDname">Doctor Name:</label>
+              <input type="text" name="invoiceDname" id="invoiceDname" readonly>
+            </div>
+            <div class="docData">
+              <label for="invoiceSpeciality">Speciality:</label>
+              <input type="text" name="invoiceSpeciality" id="invoiceSpeciality" readonly>
+            </div>
+            <div class="billAmount">
+              Bill Amount: &#8377;
+              <input type="number" name="invoiceBillamount" id="invoiceBillamount" oninput="convertToWords(this.value)">
+            </div>
+            <div class="amountWords">
+              Amount in words: <br>&#8377;
+              <input type="text" name="invoiceAmount" id="invoiceAmount" readonly>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="billTable">
+          <!-- <h5>Bill Description</h5> -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>S.No.</th>
+                <th>Service Name</th>
+                <th>Department</th>
+                <th>Amount (INR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Doctor Consultation</td>
+                <td>Medical</td>
+                <td>900.00</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Liver Function Test</td>
+                <td>BioChemistry</td>
+                <td>2,700.00</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Patient Registration</td>
+                <td>Registration</td>
+                <td>250.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="prevAppCont">
+      <div class="prevAppCard">
+        <button class="closeBtn" onclick="closeAppointment()">&#x2715;</button>
+        <div class="prevAppData">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" id="dname" name="dname" readonly>
+        </div>
+        <div class="prevAppData">
+          <label for="docSpecial">Doctor Specialzation:</label>
+          <input type="text" id="docSpecial" name="docSpecial" readonly>
+        </div>
+        <div class="prevAppData">
+          <label for="symptoms">Symptoms:</label>
+          <input type="text" id="symptoms" name="symptoms" readonly>
+        </div>
+        <div class="prevAppData">
+          <label for="indate">In Date:</label>
+          <input type="date" name="indate" id="indate" readonly>
+        </div>
+        <div class="prevAppData">
+          <label for="outdate">Out Date:</label>
+          <input type="date" name="outdate" id="outdate" readonly>
+        </div>
+        <div class="prevAppData">
+          <label for="viewReports">Reports:</label>
+          <button id="viewReports" onclick="viewRow()">View</button>
+        </div>
+        <div class="prevAppData">
+          <label for="viewInvoice">Invoice:</label>
+          <button id="viewInvoice" onclick="viewInvoice('.invoiceCont')">View</button>
+        </div>
+      </div>
+    </div>
+    <h1>Previous Appointments</h1>
+    <div class="search-container">
+        <input type="text" id="prevSearchInput" placeholder="Search by date, time, or name..." onkeyup="filterAppointments(id, 'prevAppointmentContainer')">
+    </div>
+    <div class="appointment-container" id="prevAppointmentContainer">
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr: Raju</h2>
+          <p>Date: 2023-05-10</p>
+          <p>Time: 14:30</p>
+          <p>Dr. KaliDas</p>
+        </div>
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  Ravi</h2>
+          <p>Date: 2023-06-15</p>
+          <p>Time: 11:00</p>
+          <p>Name: Jayamma</p>
+        </div>
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  Lee</h2>
+          <p>Date: 2023-07-01</p>
+          <p>Time: 09:45</p>
+          <p>Dr.Bintu</p>
+        </div>
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  HAHAha</h2>
+          <p>Date: 2023-07-01</p>
+          <p>Time: 09:45</p>
+          <p>Dr.Baby</p>
+        </div>
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  Sunny </h2>
+          <p>Date: 2023-07-01</p>
+          <p>Time: 09:45</p>
+          <p>Dr.Vicky</p>
+        </div>
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  Jonny</h2>
+          <p>Date: 2023-07-01</p>
+          <p>Time: 09:45</p>
+          <p>Name: Keerthana</p>
+        </div>
+          <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  Lee</h2>
+          <p>Date: 2023-07-01</p>
+          <p>Time: 09:45</p>
+          <p>Dr. Charitha</p>
+        </div>
+        <div class="appointment-card" onclick="openAppointment(this)">
+          <h2>Dr:  Lee</h2>
+          <p>Date: 2023-07-01</p>
+          <p>Time: 09:45</p>
+          <p>Name: Michael Brown</p>
+        </div>
+    </div>
+  </div>
+  <div class="historySubPage" id="reports">
+    <h1>Reports</h1>
+    <div class="reportCardList">
+      <div class="reportCard">
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="reportViewBtn">
+          <label for="report">Report:</label>
+          <button id="report" onclick="viewRow()">view</button>
+        </div>
+      </div>
+      <div class="reportCard">
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="reportViewBtn">
+          <label for="report">Report:</label>
+          <button id="report" onclick="viewRow()">view</button>
+        </div>
+      </div>
+      <div class="reportCard">
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="reportViewBtn">
+          <label for="report">Report:</label>
+          <button id="report" onclick="viewRow()">view</button>
+        </div>
+      </div>
+      <div class="reportCard">
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="reportViewBtn">
+          <label for="report">Report:</label>
+          <button id="report" onclick="viewRow()">view</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="historySubPage" id="prescp">
+    <div class="prescripCont">
+      <div class="prescripDetailsCard">
+        <button class="closeBtn" onclick="closeView()">&#x2715;</button>
+        <div class="prescripDetailsLeft">
+          <div class="prescripData">
+            <label for="">Patient Name:</label>
+            <input type="text">
+          </div>
+          <div class="prescripData">
+            <label for="">Doctor Name:</label>
+            <input type="text">
+          </div>
+          <div class="prescripData">
+            <label for="">Date:</label>
+            <input type="date" name="" id="">
+          </div>
+          <div class="prescripData">
+            <label for="">Medical History:</label>
+            <textarea name="" rows="3" id=""></textarea>
+          </div>
+          <div class="prescripData">
+            <label for="">Current Treatement Plan</label>
+            <input type="text">
+          </div>
+        </div>
+        <div class="prescripDetailsRight">
+              <div class="prescripData">
+                <label for="">Medication:</label>
+                <textarea name="" rows="3" id=""></textarea>
+              </div>
+              <div class="prescripData">
+                <label for="">Treatment Start Date:</label>
+                <input type="date" name="" id="">
+              </div>
+              <div class="prescripData">
+                <label for="">Treatment End Date:</label>
+                <input type="date" name="" id="">
+              </div>
+              <div class="prescripData">
+                <label for="">Treatment Progress Notes:</label>
+                <textarea name="" rows="3" id=""></textarea>
+              </div>
+        </div>
+      </div>
+    </div>
+    <h1>Prescriptions</h1>
+    <div class="reportCardList">
+      <div class="prescripCard">
+        <span class="plus">&#43;</span>
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="treatMent">Treatement Details:</label>
+          <textarea name="treatMent" rows="3" id="treatMent" readonly>Ms. Pamela Rogers, a 56-year-old woman, was admitted on July 15, 2023, with sudden chest pains radiating to her neck. No specific pain relief measures were attempted.</textarea>
+        </div>
+        <button onclick="viewMore()" class="view" id="viewMore">view more</button>
+      </div>
+      <div class="prescripCard">
+        <span class="plus">&#43;</span>
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="treatMent">Treatement Details:</label>
+          <textarea name="treatMent" rows="3" id="treatMent" readonly>Ms. Pamela Rogers, a 56-year-old woman, was admitted on July 15, 2023, with sudden chest pains radiating to her neck. No specific pain relief measures were attempted.</textarea>
+        </div>
+        <button onclick="viewMore()" class="view" id="viewMore">view more</button>
+      </div>
+      <div class="prescripCard">
+        <span class="plus">&#43;</span>
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="treatMent">Treatement Details:</label>
+          <textarea name="treatMent" rows="3" id="treatMent" readonly>Ms. Pamela Rogers, a 56-year-old woman, was admitted on July 15, 2023, with sudden chest pains radiating to her neck. No specific pain relief measures were attempted.</textarea>
+        </div>
+        <button onclick="viewMore()" class="view" id="viewMore">view more</button>
+      </div>
+      <div class="prescripCard">
+        <span class="plus">&#43;</span>
+        <div class="dataHolder">
+          <label for="pname">Patient Name:</label>
+          <input type="text" value="John Doe" id="pname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="dname">Doctor Name:</label>
+          <input type="text" value="Dr. David Sim" id="dname" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="reportDate">Date:</label>
+          <input type="date" value="" id="reportDate" readonly>
+        </div>
+        <div class="dataHolder">
+          <label for="treatMent">Treatement Details:</label>
+          <textarea name="treatMent" rows="3" id="treatMent" readonly>Ms. Pamela Rogers, a 56-year-old woman, was admitted on July 15, 2023, with sudden chest pains radiating to her neck. No specific pain relief measures were attempted.</textarea>
+        </div>
+        <button onclick="viewMore()" class="view" id="viewMore">view more</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="checkup">
+    <section class="testIncl">
+        <h2>Tests Included</h2>
+        <ul class="tests">
+            <li>Blood Tests</li>
+            <li>Urinalysis</li>
+            <li>X-ray</li>
+            <li>ECG</li>
+            <li>Ultrasound</li>
+        </ul>
+        <button class="checkBtn" onclick="checkHealthActivity()">HealthActivity</button>
+    </section>
+    <section id="bookApp">
+      <form id="appointmentForm" onsubmit="return validateForm()">
+          <h2>Book an Appointment</h2>
+            <label for="name_">Name: </label>
+            <input type="text" id="name_" name="name" required><br><br>
+            
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+            
+            <label for="date">Preferred Date: </label>
+            <input type="date" id="date" name="date" required><br><br>
+            
+            <label for="checkTime">Preferred Time: </label>
+            <input type="time" id="checkTime" name="checkTime" required><br><br>
+            
+            <button type="submit" class="bookBtn">Book Appointment</button>
+        </form>
+    </section>
+</div>
+
+<div class="content" id="payment">
+    
+    <section id="ready-to-pay">
+        <h2>Ready to Pay</h2>
+        <table class="table table-bordered border-info">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Date</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for bill in data_bill %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{bill.date}}</td>
+            <td class="amount">{{bill.bill}}</td>
+            <td><button class="payBtn" onclick="payNow(this)">Pay Now</button></td>
+          </tr>
+          {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <section id="payment-history">
+      <div class="invoicePayCont">
+        <div class="invoiceCard">
+        <button class="closeBtn" onclick="closeInvoice('.invoicePayCont')">&#x2715;</button>
+        <h3>Invoice</h3>
+          <div class="details">
+            <div class="patientDetails">
+              <div class="patientData">
+                <label for="invoicePname">Name:</label>
+                <input type="text" name="invoicePname" id="invoicePname" readonly>
+              </div>
+              <div class="patientData">
+                <label for="invoicePage">Age:</label>
+                <input type="text" name="invoicePage" id="invoicePage" readonly>
+              </div>
+              <div class="patientData">
+                <label for="invoicePsex">Sex:</label>
+                <input type="text" name="invoicePsex" id="invoicePsex" readonly>
+              </div>
+              <div class="patientData">
+                <label for="invoicePdate">Date:</label>
+                <input type="text" name="invoicePdate" id="invoicePdate" readonly>
+              </div>
+              <div class="patientData">
+                <label for="invoicePtime">Time:</label>
+                <input type="text" name="invoicePtime" id="invoicePtime" readonly>
+              </div>
+            </div>
+            <div class="hospitalDetails">
+              <div class="docData">
+                <label for="invoiceDname_">Doctor Name:</label>
+                <input type="text" name="invoiceDname" id="invoiceDname_" readonly>
+              </div>
+              <div class="docData">
+                <label for="invoiceSpeciality">Speciality:</label>
+                <input type="text" name="invoiceSpeciality" id="invoiceSpeciality" readonly>
+              </div>
+              <div class="billAmount">
+                Bill Amount: &#8377;
+                <input type="number" name="invoiceBillamount" id="invoiceBillamount" oninput="convertToWords(this.value)">
+              </div>
+              <div class="amountWords">
+                Amount in words: <br>&#8377;
+                <input type="text" name="invoiceAmount" id="invoiceAmount" readonly>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="billTable">
+            <!-- <h5>Bill Description</h5> -->
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Service Name</th>
+                  <th>Department</th>
+                  <th>Amount (INR)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Doctor Consultation</td>
+                  <td>Medical</td>
+                  <td>900.00</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Liver Function Test</td>
+                  <td>BioChemistry</td>
+                  <td>2,700.00</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Patient Registration</td>
+                  <td>Registration</td>
+                  <td>250.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+        <h2>Payment History</h2>
+        <table class="table table-bordered border-info">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Date</th>
+                <th scope="col">Price</th>
+                <th scope="col">Invoice</th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for hist in data_pay_hist %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{hist.date}}</td>
+            <td>{{hist.amount}}</td>
+            <td>{{hist.status}}</td>
+          </tr>
+          {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="viewModalLabel">Report Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div id="modalContent">
+                <div class="modalData">
+                  <label for="reportPname">Patient Name:</label>
+                  <input type="text" value="Venkata Sai" name="reportPname" id="reportPname" readonly>
+                </div>
+                <div class="modalData">
+                  <label for="reportDob">DOB:</label>
+                  <input type="date" value="2024-06-30" name="reportDob" id="reportDob" readonly>
+                </div>
+                <div class="modalData">
+                  <label for="reportGender">Gender:</label>
+                  <input type="text" value="Male" name="reportGender" id="reportGender" readonly>
+                </div>
+                <div class="modalData">
+                  <label for="reportVisitDate">Visit Date:</label>
+                  <input type="date" value="2024-07-01" name="reportVisitDate" id="reportVisitDate" readonly>
+                </div>
+                <div class="modalData">
+                  <label for="reportPhone">Phone Number:</label>
+                  <input type="number" value="6303948186" name="reportPhone" id="reportPhone" readonly>
+                </div>
+                <div class="modalData">
+                  <label for="reportEmail">Email:</label>
+                  <input type="email" value="vicky2002@gmail.com" name="reportEmail" id="reportEmail" readonly>
+                </div>
+                  <hr>
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>Test Name</th>
+                              <th>Result</th>
+                              <th>Bio Reference</th>
+                              <th>Units</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>Platlets Count</td>
+                              <td>80</td>
+                              <td>120</td>
+                              <td>mg/dL</td>
+                          </tr>
+                          <tr>
+                              <td>Typhoid</td>
+                              <td>negative</td>
+                              <td>negative/positive</td>
+                              <td>-</td>
+                          </tr>
+                          <tr>
+                              <td>Plasma Count</td>
+                              <td>7.6</td>
+                              <td>6.4-8.3
+                                <td>g/dL</td>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+    <div class="modal fade" id="healthActivityModal" tabindex="-1" aria-labelledby="healthActivityModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="healthActivityModalLabel">Health Activity Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 chart-container mb-3">
+                                <canvas id="lineChart" width="400" height="400"></canvas>
+                            </div>
+                            <div class="col-md-6 chart-container">
+                                <canvas id="doughnut" width="400" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="noDataModal" tabindex="-1" aria-labelledby="noDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noDataModalLabel">Health Activity Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    You don't have previous data!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="logout-url" value="{% url 'logout' %}">
+
+ <!-- Vendor JS Files -->
+    <script src="../static/hospital_app/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/hospital_app/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../static/hospital_app/vendor/purecounter/purecounter.js"></script>
+    <script src="../static/hospital_app/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../static/hospital_app/js/evo-calendar.min.js"></script>
+    <script src="../static/hospital_app/js/script.js"></script>
+    <script src="../static/hospital_app/js/main.js"></script>
+    <script src="../static/hospital_app/js/calendar.js"></script>
+
+  <script src="{% static 'hospital_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'hospital_app/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'hospital_app/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'hospital_app/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'hospital_app/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'hospital_app/js/main.js' %}"></script>
+  <script src="{% static 'hospital_app/js/script.js' %}"></script>
+  
+    <script>
+      document.getElementById('send-button').addEventListener('click', sendMessage);
+document.getElementById('user-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+      const chatOutput = document.getElementById('chat-output');
+
+const botResponses = {
+    "hello": [
+        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+        "1. Book Appointment",
+        "2. Master Health Checkup",
+        "3. Services",
+        "4. Payments",
+        "5. Consult Doctors",
+        "6. Prescriptions",
+        "7. Reports",
+        "Press numbers between 1-7 to know more info"
+    ],
+    "1": [
+        "Checkout the dashboard and you can book your appointment"
+    ],
+    "2": [
+        "Go to the Dashboard and check out the master health checkup, there you can find appointment booking related to your master health checkup"
+    ],
+    "4": [
+        "Visit Dashboard and you can proceed your payments in online, offline and you can view your transaction bills history"
+    ],
+    "5": [
+        "You can consult our Specialized doctors",
+        "1.Dr.Venkat - Radiologist",
+        "2.Dr.Vicky - Neurologist",
+        "3.Dr.Nagendra - Anesthesiologist",
+        "4.Dr.Ravi - Ophthalmologist",
+        "5.Dr.Dev - General Surgeon",
+        "6.Dr.Uzma - Dermatologist",
+        "7.Dr.Durga - Orthopedic surgeon",
+        "8.Dr.Jagannadh - ENT",
+        "9.Dr.Sathya - Oncologist",
+        "10.Dr.Rahul - Sports Medicine Physician",
+        "11.Dr.Manoj - Nutritionist",
+        "12.Dr.Raj - Pulmonologist"
+    ],
+    "3": [
+        "Our Services:",
+        "Regular Checkup",
+        "Medicine",
+        "Diagnostic Services",
+        "Blood Test",
+        "Disabled Person",
+        "Health check packages"
+    ],
+    "6": "Visit the Dashboard and click on history there you can find Prescriptions",
+    "7": "You can checkout your reports on Dashboard",
+    "how are you?": "I am just a bot and I have no feelings, what about you?",
+    "fine": "That's great to hear",
+    "bye": [
+        "Goodbye! Have a great day and stay Healthy!"
+    ],
+    "hi": [
+        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+        "1. Book Appointment",
+        "2. Master Health Checkup",
+        "3. Services",
+        "4. Patient Records",
+        "5. Consult Doctors",
+        "6. Prescriptions",
+        "7.Reports",
+        "Press numbers between 1-7 to know more info"
+    ],
+    "hey": [
+        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+        "1. Book Appointment",
+        "2. Master Health Checkup",
+        "3. Services",
+        "4. Patient Records",
+        "5. Consult Doctors",
+        "6. Prescriptions",
+        "7.Reports",
+        "Press numbers between 1-7 to know more info"
+    ],
+    "hii": [
+        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+        "1. Book Appointment",
+        "2. Master Health Checkup",
+        "3. Services",
+        "4. Patient Records",
+        "5. Consult Doctors",
+        "6. Prescriptions",
+        "7.Reports",
+        "Press numbers between 1-7 to know more info"
+    ],
+    "helloo": [
+        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+        "1. Book Appointment",
+        "2. Master Health Checkup",
+        "3. Services",
+        "4. Patient Records",
+        "5. Consult Doctors",
+        "6. Prescriptions",
+        "7.Reports",
+        "Press numbers between 1-7 to know more info"
+    ],
+    "hie": [
+        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+        "1. Book Appointment",
+        "2. Master Health Checkup",
+        "3. Services",
+        "4. Patient Records",
+        "5. Consult Doctors",
+        "6. Prescriptions",
+        "7.Reports",
+        "Press numbers between 1-7 to know more info"
+    ]
+};
+
+function sendMessage() {
+    const userInput = document.getElementById('user-input').value.trim().toLowerCase();
+    const chatOutput = document.getElementById('chat-output');
+    
+    const loadCont = document.createElement('div');
+    loadCont.classList.add('loadCont');
+    const loadAnimation = document.createElement('div');
+    loadAnimation.classList.add('repLoader');
+    loadCont.appendChild(loadAnimation);
+
+    if (userInput !== '') {
+        appendMessage(userInput, 'user');
+        chatOutput.appendChild(loadCont);
+        document.getElementById('user-input').value = '';
+        setTimeout(() => {
+            chatOutput.removeChild(loadCont);
+            const botResponse = getBotResponse(userInput);
+            appendMessage(botResponse, 'bot');
+        }, 4000);
+    }
+}
+
+function appendMessage(message, sender) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', `${sender}-message`);
+
+    if (Array.isArray(message)) {
+        const listElement = document.createElement('ul');
+        message.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            listElement.appendChild(listItem);
+        });
+        messageElement.appendChild(listElement);
+    } else {
+        messageElement.textContent = message;
+    }
+
+    chatOutput.appendChild(messageElement);
+    chatOutput.scrollTop = chatOutput.scrollHeight;
+    
+    messageElement.scrollIntoView({ behavior: 'smooth' });
+}
+
+function getBotResponse(userInput) {
+    return botResponses[userInput] || ["I'm sorry, I don't understand that."];
+}
+
+function toggleChatbot() {
+    const chatbotPopup = document.getElementById('chatbot-popup');
+    chatbotPopup.classList.toggle('hidden');
+}
+      function logout(){
+          const logoutUrl = document.getElementById('logout-url').value;
+          window.location.href = logoutUrl;
+      }
+      window.onload = function() {
+      // Check if the page has already been refreshed
+      if (!sessionStorage.getItem('refreshed')) {
+        // Set the flag in session storage
+        sessionStorage.setItem('refreshed', 'true');
+        // Reload the page
+        location.reload();
+      }
+    };
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>Master Health Check-up</title>
+
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+	{% load static %}
+	<!-- Vendor CSS Files -->
+	<link href="{% static 'admin/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+	<link href="{% static 'admin/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link rel="stylesheet" href="{% static 'admin/css/home.css' %}">
+	<link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+	<!-- ======= Header ======= -->
+	
+	<header id="header" class="sticky-top d-flex px-5 align-items-center">
+		<h1 class="logo me-auto"><a href="index.html">Master Health Check-Up</a></h1>
+		{% if err_msg %}
+		<h1 class="logo me-auto" style="color: red;">{{err_msg}}</h1>
+		{% endif %}
+		<nav id="navbar" class="navbar order-last order-lg-0">
+			<ul>
+				<li><a class="nav-link scrollto active" data-section="home" href="#home">Home</a></li>
+				<li><a class="nav-link scrollto" data-section="appointments" href="#appointments">Appointments</a></li>
+				<li><a class="nav-link scrollto" data-section="doctorsList" href="#doctorsList">Doctors</a></li>
+				<li><a class="nav-link scrollto" data-section="patientsList" href="#patientsList">Patients</a></li>
+				<div class="addCont">
+					<li><a class="nav-link scrollto" data-section="add" href="#add">Add</a></li>
+					<div class="addOptions">
+						<a data-section="add" data-id="doctor" class="addOpt">Doctor</a>
+						<a data-section="add" data-id="admin" class="addOpt">Admin</a>
+						<a data-section="add" data-id="labtech" class="addOpt">Labortory</a>
+					</div>
+				</div>
+				<li><button class="logout" id="patientLogout" onclick="logout()">Log out</button></li>
+			</ul>
+			<i class="bi bi-list mobile-nav-toggle"></i>
+		</nav>
+	</header>
+	
+	<div class="content active" id="home">
+		<div class="homeContainer">
+			<h1>Welcome to Master <br> Health Check-Up</h1>
+			<h2>We are team of Specialized Doctors.<br>"Your devotion and care bring healing, comfort and hope."</h2>
+			<a class="btn-get-started scrollto">Learn More</a>
+		</div>
+	</div>
+	<div class="content" id="appointments">
+		<div class="aptHolder">
+			<div class="aptsCont">
+				<div class="aptsNav">
+					<h4>Appointment List</h4>
+					<input
+						type="text"
+						id="patInpt"
+						onkeyup="filterDoctors(id, 1)"
+						placeholder="Search for patients.."
+					/>
+					<input
+						type="text"
+						id="docInpt"
+						onkeyup="filterDoctors(id, 4)"
+						placeholder="Search for doctors.."
+					/>
+				</div>
+				<div class="aptsTable">
+				  <div class="aptsHeader">
+					 <div><h4>S.NO</h4></div>
+					 <div><h4>Patient</h4></div>
+					 <div><h4>Date</h4></div>
+					 <div><h4>Time</h4></div>
+					 <div><h4>Doctor</h4></div>
+				  </div>
+				  {% for appoint in appointment_list %}
+				  <div class="aptsRow">
+					 <div>{{forloop.counter}}</div>
+					 <div>{{appoint.name}}</div>
+					 <div>{{appoint.date}}</div>
+					 <div>{{appoint.time}}</div>
+					 <div>{{appoint.doctor}}</div>
+				  </div>
+				  {% endfor %}
+				  
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content" id="doctorsList">
+		<div class="containerbox">
+			<div class="wrapping">
+				 <div class="docNav">
+					  <div class="heading-wrapper">
+							<div class="heading">
+								 <h5>List of Doctors</h5>
+							</div>
+							<div>
+								 <label for="statusFilter">Sort By:</label>
+								 <select id="statusFilter" onchange="setStatus(id, '.doctorTableList')">
+									  <option value="all">All</option>
+									  <option value="On Leave">On Leave</option>
+									  <option value="Having Appointments">Having Appointments</option>
+									  <option value="NO Schedules">No Schedules</option>
+								 </select>
+							  </div>
+					  </div>
+	  
+					  <div class="tableContainer">
+							<ul class="doctorTableList">
+							 {% for doc in doctors_list %}
+							  <li class="table-row">
+								 <div class="sno">{{forloop.counter}}</div>
+								 <div class="docName">{{doc.doc_name}}</div>
+								 <div class="status">No Schedules</div>
+							  </li>
+							  {% endfor %}
+							</ul>
+						 </div>
+	  
+				 </div>
+			</div>
+	  </div>
+	</div>
+	<div class="content" id="patientsList">
+		<div class="containerbox">
+			<div class="wrapping">
+				 <div class="patNav">
+					  <div class="heading-wrapper">
+							<div class="heading">
+								 <h5>List of Patients</h5>
+							</div>
+							<div>
+								 <label for="categoryFilter">Filter by Category:</label>
+								 <select id="categoryFilter" onchange="setStatus(id, '.patientTableList')">
+									  <option value="all">All</option>
+									  <option value="IN-patient">IN-patient</option>
+									  <option value="OUT-patient">OUT-patient</option>
+								 </select>
+							  </div>
+					  </div>
+					  <div class="tableContainer">
+						<ul class="patientTableList">
+						  <li class="table-header">
+							 <div class="sno"><b>S.No</b></div>
+							 <div class="col col-2"><b>Patient Name</b></div>
+							 <div class="col col-3"><b>Appointment Time</b></div>
+							 <div class="col col-4"><b>Doctor Name</b></div>
+							 <div class="col col-5 status"><b>Category</b></div>
+							 <div class="col col-6"><b>Action</b></div>
+  
+						  </li>
+						  
+						  {% for pat in appointment_list %}
+						  <li class="table-row">
+							 <div class="sno">{{forloop.counter}}</div>
+							 
+							 <div class="col col-2">{{pat.name}}</div>
+							 <div class="col col-3">{{pat.date}} {{pat.time}}</div>
+							 <div class="col col-4">{{pat.doctor}}</div>
+							 <div class="col col-5 status">IN-patient</div>
+							 <div class="col col-6"><button class="view">View</button></div>
+						  </li>
+						  {% endfor %}
+						  
+						</ul>
+						 </div>
+	  
+				 </div>
+			</div>
+	  </div>
+	</div>
+	<div class="content" id="add">
+		<div id="doctor" class="addPerson visible">
+			<div class="addDocCont">
+				 <center><h3>Add Doctor</h3></center>
+				 <form action="{% url 'add_doctor' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="formCont">
+						<div class="leftForm">
+							<div class="form-group">
+								 <label for="addDocfname">First Name</label>
+								 <input type="text" class="form-control" id="addDocfname" name="doc_fname" required>
+							</div>
+							<div class="form-group">
+								 <label for="addDoclname">Last Name</label>
+								 <input type="text" class="form-control" id="addDoclname" name="doc_lname" required>
+							</div>
+							<div class="form-group">
+								 <label for="addDocspec">Specialization</label>
+								 <input type="text" class="form-control" id="addDocspec" name="doc_spec">
+							</div>
+							<div class="form-group">
+								 <label for="addDocexp">Experence</label>
+								 <input type="text" class="form-control" id="addDocexp" name="doc_exp">
+							</div>
+							<div class="form-group">
+								 <label for="addDocemail">Email</label>
+								 <input type="email" class="form-control" id="addDocemail" name="doc_mail" required>
+							</div>
+						</div>
+						<div class="rightForm">
+							<div class="form-group">
+								<label for="addDocphno">Phone Number</label>
+								<input type="tel" class="form-control" id="addDocphno" name="doc_mobile" required>
+							</div>
+							<div class="form-group">
+								 <label for="addDocdob">Date of Birth</label>
+								 <input type="date" class="form-control" id="addDocdob" name="doc_dob" required onchange="calculateAge()">
+							</div>
+							<div class="form-group">
+								 <label for="addDocprofile">Profile Image</label>
+								 <input type="file" class="form-control-file" id="addDocprofile" name="doc_image" accept="image/*" required>
+							</div>
+							<div class="form-group">
+								 <label for="addDocpswd">Password</label>
+								 <input type="password" class="form-control" id="addDocpswd" name="doc_pwd" required>
+							</div>
+							<div class="form-group">
+								 <label for="addDocCpswd">Confirm Password</label>
+								 <input type="password" class="form-control" id="addDocCpswd" required>
+							</div>
+						</div>
+					</div>
+					  <div class="form-group">
+							<button type="submit" class="view">Add</button>
+					  </div>
+				 </form>
+			</div>
+		</div>
+		<div id="admin" class="addPerson">
+			<div class="addDocCont">
+				 <center><h3>Add Admin</h3></center>
+				 <form>
+					<div class="formCont">
+						<div class="leftForm">
+							<div class="form-group">
+								 <label for="addPatfname">First Name</label>
+								 <input type="text" class="form-control" id="addPatfname" name="addPatfname" required>
+							</div>
+							<div class="form-group">
+								 <label for="addPatlname">Last Name</label>
+								 <input type="text" class="form-control" id="addPatlname" name="addPatlname" required>
+							</div>
+							<div class="form-group">
+								 <label for="addPatemail">Email</label>
+								 <input type="email" class="form-control" id="addPatemail" name="addPatemail" required>
+							</div>
+						</div>
+						<div class="rightForm">
+							<div class="form-group">
+								<label for="addPatphno">Phone Number</label>
+								<input type="tel" class="form-control" id="addPatphno" name="addPatphno" required>
+							</div>
+							<div class="form-group">
+								 <label for="addPatpswd">Password</label>
+								 <input type="password" class="form-control" id="addPatpswd" name="addPatpswd" required>
+							</div>
+							<div class="form-group">
+								 <label for="addPatCpswd">Confirm Password</label>
+								 <input type="password" class="form-control" id="addPatCpswd" name="addPatCpswd" required>
+							</div>
+						</div>
+					</div>
+					  <div class="form-group">
+							<button type="submit" class="view">Add</button>
+					  </div>
+				 </form>
+			</div>
+		</div>
+		<div id="labtech" class="addPerson">
+			<div class="addDocCont">
+				 <center><h3>Add Lab Technician</h3></center>
+				 <form action="{% url 'laboratory_reg' %}" method="post">
+					{% csrf_token %}
+					<div class="labFormCont">
+							<div class="form-group">
+								 <label for="addPatemail">Email</label>
+								 <input type="email" class="form-control" id="addPatemail" name="tech_mail" required>
+							</div>
+							<div class="form-group">
+								 <label for="addPatpswd">Password</label>
+								 <input type="password" class="form-control" id="addPatpswd" name="tech_password" required>
+							</div>
+							<div class="form-group">
+								 <label for="addPatCpswd">Confirm Password</label>
+								 <input type="password" class="form-control" id="addPatCpswd" name="tech_password2" required>
+							</div>
+					</div>
+					  <div class="form-group">
+							<button type="submit" class="view">Add</button>
+					  </div>
+				 </form>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="logout-url" value="{% url 'admin_logout' %}">
+	<!-- Vendor JS Files -->
+	<script src="{% static 'admin/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'admin/vendor/glightbox/js/glightbox.min.js' %}"></script>
+	<script src="{% static 'admin/vendor/php-email-form/validate.js' %}"></script>
+	<script src="{% static 'admin/vendor/purecounter/purecounter.js' %}"></script>
+	<script src="{% static 'admin/vendor/swiper/swiper-bundle.min.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="{% static 'admin/js/main.js' %}"></script>
+	<script src="{% static 'admin/js/script.js' %}"></script>
+	
+</body>
+<script>
+	function logout(){
+          const logoutUrl = document.getElementById('logout-url').value;
+          window.location.href = logoutUrl;
+      }
+
+window.onload = function() {
+
+if (!sessionStorage.getItem('refreshed')) {
+  sessionStorage.setItem('refreshed', 'true');
+  location.reload();
+}
+};
+</script>
+</html>

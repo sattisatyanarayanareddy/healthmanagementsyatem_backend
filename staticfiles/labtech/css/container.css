@@ -1,0 +1,128 @@
+body{
+  background-image: url("https://res.cloudinary.com/dlo7urgnj/image/upload/v1719491296/hero-bg_opyvrz.png");
+  background-attachment: fixed; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 10px;
+}
+.subPage {
+    margin: 200px 100px 0;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+.subPage.active {
+  display:flex;
+}
+.navbar-nav li {
+  margin-right:20%;
+}
+
+.btn-sm-custom {
+  padding: 2px 2px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 1px;
+}
+
+
+
+.formHolder, .tableHolder {
+  background-color: #fff;
+  padding: 21px;
+  box-shadow: 0 2px 15px 0 rgb(0 0 0 / 50%);
+  border-radius: 20px;
+}
+.uploadForm {
+    width: 50%; 
+    margin-top:10%;
+    margin-left:23%; 
+    border-radius: 10px;
+    text-align: left;
+    justify-content: center;
+}
+
+.heading-wrapper
+  {
+    display: flex;
+    justify-content: center;
+  }
+
+  .details-patient 
+  {
+    font-size: 1.2em !important;
+  }
+
+  .details-patient
+  {
+    display: flex;
+    
+  }
+
+  .center
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .center-emergency 
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .center-emergency button
+  {
+    background-color: #ef5757;
+  }
+
+.btn {
+    background-color: #59d4d8;
+    color: #11122b;
+    font-size: 1;
+    padding: 7px 10px;
+    border-radius: 30px;
+    outline: none;
+    transition: 0.3s;
+    width: 120px;
+  }
+  .btn-hover{
+    background-color: #b61515;
+  }
+
+  .btn:active {
+    box-shadow: 5px 5px 30px rgba(28, 25, 25, 0.4);
+  } 
+
+  /* .btn2 {
+    background-color: #ef5757;
+    color: #11122b;
+    font-size: 1;
+    padding: 7px 10px;
+    border: 1px solid #ef5757;
+    border-radius: 30px;
+    outline: none;
+    transition: 0.3s;
+    width: 120px;
+  }
+  
+  .btn2:active {
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.4);
+  } */
+
+.wrapping
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 20px;
+
+}
+.hidden {
+  display: none;
+}
+

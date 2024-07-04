@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'doctor_app/css/page.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      .otp-input {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form action="{% url 'hospital/doctor_login' %}" method="post">
+          {% csrf_token %}
+          <h1>Sign in</h1>
+          <input type="email" placeholder="Email" name="email"/>
+          <input type="password" placeholder="Password" name="password"/>
+          <button>Sign In</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-right">
+            <h1>Doctor Login</h1>
+            <p>Enter your personal details</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <script src="{% static 'doctor_app/js/page.js' %}"></script>
+  </body>
+  <script>
+  window.onload = function() {
+
+if (!sessionStorage.getItem('refreshed')) {
+  sessionStorage.setItem('refreshed', 'true');
+  location.reload();
+}
+};
+  </script>
+</html>
