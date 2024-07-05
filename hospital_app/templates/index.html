@@ -10,6 +10,18 @@
   {% load static %}
 
   <!-- Vendor CSS Files -->
+<!-- 
+  <link href="../static/hospital_app/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../static/hospital_app/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../static/hospital_app/css/style.css" rel="stylesheet">
+  <link href="../static/hospital_app/css/home.css" rel="stylesheet"> -->
+
   <link href="{% static 'hospital_app/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
   <link href="{% static 'hospital_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'hospital_app/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
@@ -49,17 +61,26 @@
     <div class="emgContainer">
       <div class="emergencyCard">
         <button class="closeBtn" onclick="closeModal()">&#x2715;</button>
-        <form action="{% url 'emergency_join' %}" method="post">
+        <form action="{% url 'emergency_join' %}" name="myForm" method="post" onsubmit="return validateForm()">
           {% csrf_token %}
-          <div class="input_box">
-            <input type="text" name="emergency_username" placeholder="" class="input-field" required>
-            <label class="label">Username</label>
-          </div>
-          <div class="input_box">
-            <input type="number" name="emergency_pwd" class="input-field" placeholder="" required>
-            <label class="label">Phone Number</label>
-          </div>
-          <button type="submit">Submit</button>
+            <div class="input_box">
+              <input type="text" name="pname" class="input-field" id="usernameemer">
+              <label class="label"><span style="color: red;">*</span>Username</label>
+            </div>
+            <div class="input_box">
+              <input type="number" name="passwd" class="input-field" id="phonenumemer">
+              <label class="label"><span style="color: red;">*</span>Phone Number</label>
+            </div>
+            <div class="input_box">
+              <select name="emergency_dropdown" class="input-field">
+                <option value="Null">Select specialization</option>
+                <option value="General Physician">General Physician</option>
+                <option value="Opthamologist">Opthamologist</option>
+                <option value="ENT">ENT</option>
+                <option value="Orthopedist">Orthopedist</option>
+              </select>
+            </div>
+            <button type="submit">Submit</button>
         </form>
       </div>
     </div>
@@ -108,8 +129,7 @@
         <h4 style="color: red;">{{emergency_msg}}</h4>
       {% endif %}
     <div class="container">
-  
-      <h1>Welcome to Master <br> Health Check-Up</h1>
+      <h1>Welcome to <br> Care Plus Hospital</h1>
       <h2>We are team of Specialized Doctors.<br>"Your devotion and care bring healing, comfort and hope."</h2>
       <a href="#about" class="btn-get-started scrollto">Learn More</a>
     </div>
@@ -126,34 +146,34 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="fas fa-heartbeat"></i></div>
               <h4 class="title"><a href=""> Normal checkup</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti 2 times per month quas molestias excepturi</p>
+              <p class="description">Comprehensive routine check-ups to ensure your optimal health and well-being.</p>
             </div>
           </div>
-
+  
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div class="icon"><i class="fas fa-dna"></i></div>
-              <h4 class="title"><a href="">Blood Test</a></h4>
-              <p class="description">At vero eos et accusamus et 1 week odio dignissimos ducimus qui blanditiis</p>
+                <div class="icon"><i class="fas fa-eye"></i></div>
+                <h4 class="title"><a href="">Ophthalmology Checkup</a></h4>
+                <p class="description"> Comprehensive routine check-ups to ensure your optimal eye health and vision well-being..</p>
             </div>
-          </div>
+        </div>
           
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="fas fa-temperature-high"></i></div>
-              <h4 class="title"><a href="">Body temperature</a></h4>
-              <p class="description">Excepteur sint occaecat 37.6 non proident, 98.6 sunt in culpa qui officia</p>
+              <div class="icon"><i class="fa-solid fa-user-md"></i></div>
+              <h4 class="title"><a href="">Dermatology check-up</a></h4>
+              <p class="description">Comprehensive routine check-ups to ensure your optimal skin health and well-being..</p>
             </div>
           </div>
-
+  
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="fas fa-hand-holding-medical"></i></div>
-              <h4 class="title"><a href="">Medicine use</a></h4>
-              <p class="description">Duis aute dolor 10-12 in reprehenderit in voluptate 8-12 velit esse cillum dolore</p>
+              <div class="icon"><i class="fas fa-head-side-cough"></i></div>
+              <h4 class="title"><a href="">ENT check-up</a></h4>
+              <p class="description">Comprehensive routine check-ups to ensure your optimal ear, nose, and throat health and well-being.</p>
             </div>
           </div>
-
+  
         </div>
 
       </div>
@@ -164,40 +184,36 @@
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>About Us</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius 
-            consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. 
-            Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-             Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Our dedicated team of healthcare professionals is committed for providing exceptional patient-centered services. With state-of-the-art facilities and a focus on innovative treatments, we strive to enhance the health and well-being of our community. Trust us to be your partner in health, delivering excellence with every visit.</p>
         </div>
 
-    <div class="row">
-    <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center
-     align-items-stretch position-relative">
-    <!-- <a href="https://youtu.be/h39m-e8JHDc" class="glightbox play-btn mb-4"></a> -->
-          </div>
-
-    <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch
-     justify-content-center py-5 px-lg-5">
-            
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-heart"></i></div>
-              <h4 class="title"><a href="">HEALTH IS WEALTH</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-health"></i></div>
-              <h4 class="title"><a href="">EMERGENCY</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-help-circle"></i></div>
-              <h4 class="title"><a href="">SERVICES </a></h4>
-              <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
-            </div>
-            
-          </div>
+        <div class="row">
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center
+           align-items-stretch position-relative">
+                </div>
+        
+          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch
+           justify-content-center py-5 px-lg-5">
+                  
+                  <div class="icon-box">
+                    <div class="icon"><i class="bx bx-heart"></i></div>
+                    <h4 class="title"><a href="">HEALTH IS WEALTH</a></h4>
+                    <p class="description">True wealth is having your health and knowledge of self.</p>
+                  </div>
+        
+                  <div class="icon-box">
+                    <div class="icon"><i class="bx bx-health"></i></div>
+                    <h4 class="title"><a href="">EMERGENCY</a></h4>
+                    <p class="description">The first point of contact for any critically ill patient, needing immediate medical attention.</p>
+                  </div>
+        
+                  <div class="icon-box">
+                    <div class="icon"><i class="bx bx-help-circle"></i></div>
+                    <h4 class="title"><a href="">SERVICES </a></h4>
+                    <p class="description">Medical procedures, tests that can be provided to the patient in fullfledged manner.</p>
+                  </div>
+                  
+                </div>
         </div>
 
       </div>
@@ -213,38 +229,37 @@
           <div class="count-box">
             <i class="fas fa-user-md"></i>
             <span data-purecounter-start="0" data-purecounter-end="95" data-purecounter-duration="1" class="purecounter"></span>
-            <p><strong>Doctors</strong> consequuntur quae qui deca rode</p>
-            <a href="#">Find out more &raquo;</a>
+            <p><strong>Doctors</strong><br> With over 95 highly specialized doctors</p>
+            
           </div>
         </div>
-
+  
         <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
           <div class="count-box">
             <i class="far fa-hospital"></i>
             <span data-purecounter-start="0" data-purecounter-end="36" data-purecounter-duration="1" class="purecounter"></span>
-            <p><strong>Departments</strong> adipisci atque cum aut numquam delectus</p>
-            <a href="#">Find out more &raquo;</a>
+            <p><strong>Departments</strong><br> Department staffed with highly skilled professionals</p>
+            <a href="#"></a>
           </div>
         </div>
-
+  
         <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
           <div class="count-box">
             <i class="fas fa-flask"></i>
             <span data-purecounter-start="0" data-purecounter-end="23" data-purecounter-duration="1" class="purecounter"></span>
-            <p><strong>Research Lab</strong> aut commodi quaerat. Aliquam ratione</p>
-            <a href="#">Find out more &raquo;</a>
+            <p><strong>Research Lab</strong><br>Innovative research lab advancing healthcare</p>
+            <a href="#"></a>
           </div>
         </div>
-
+  
         <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
           <div class="count-box">
             <i class="fas fa-award"></i>
             <span data-purecounter-start="0" data-purecounter-end="250" data-purecounter-duration="1" class="purecounter"></span>
-            <p><strong>Awards</strong> rerum asperiores dolor molestiae doloribu</p>
-            <a href="#">Find out more &raquo;</a>
+            <p><strong>Awards</strong><br>Recognized for excellence in healthcare</p>
+            <a href="#"></a>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -253,63 +268,62 @@
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container">
-
         <div class="section-title">
           <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Our aim is to deliver state-of-the-art medical care. We are commited in providing the best patient care and welcome the opportunity to serve you and your better ones.</p>
         </div>
-
+  
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
-              <div class="icon"><i class="fas fa-heartbeat"></i></div>
-              <h4><a href="">Regular Checkup</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <div class="icon"><i class="fas fa-head-side-cough"></i></div>
+              <h4><a href="">ENT Checkup</a></h4>
+              <p>Our comprehensive ENT checkup includes a wide range of diagnostic tests and evaluations using sophisticated equipment, ensuring a thorough assessment of your ear, nose, and throat health by our best-in-class doctors.</p>
             </div>
           </div>
-
+  
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
-              <div class="icon"><i class="fas fa-pills"></i></div>
-              <h4><a href="">Medicine</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <div class="icon"><i class="fas fa-crutch"></i></div>
+              <h4><a href="">Orthopedic Services</a></h4>
+              <p>Our hospital features an in-house pharmacy stocked with all necessary medical supplies, ensuring convenient access to medications and orthopedic care essentials for our patients' needs.</p>
             </div>
           </div>
-
+  
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-hospital-user"></i></div>
-              <h4><a href="">Pharmeologist</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <h4><a href="">Diagnostic Services</a></h4>
+              <p>Promed offers a wide range of basic and advanced diagnostic services. Methods used are the best practices in their respective domains.</p>
             </div>
           </div>
-
+  
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="fas fa-dna"></i></div>
-              <h4><a href="">Blood Test</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <div class="icon"><i class="fas fa-ambulance"></i></div>
+              <h4><a href="">Emergency Services</a></h4>
+              <p>Immediate, round-the-clock care for critical medical conditions, injuries, and trauma, ensuring swift response and expert medical intervention.</p>
             </div>
           </div>
-
+  
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="fas fa-wheelchair"></i></div>
-              <h4><a href="">Disabled Person</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+              <div class="icon"><i class="fas fa-flask"></i></div>
+              <h4><a href="">Laboratory Services</a></h4>
+              <p>Accessible and inclusive diagnostic services designed to meet the specific needs of individuals with disabilities, ensuring comfort, dignity, and comprehensive care for all patients.</p>
             </div>
           </div>
-
+  
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="fas fa-notes-medical"></i></div>
-              <h4><a href="">Health Post</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+              <div class="icon"><i class="fas fa-x-ray"></i></div>
+              <h4><a href="">Radiology Services</a></h4>
+              <p>State-of-the-art imaging services encompassing X-rays, MRIs, CT scans, and ultrasounds, ensuring precise diagnostics and effective treatment planning tailored to your healthcare needs.</p>
             </div>
           </div>
-
+  
         </div>
-
+  
       </div>
     </section><!-- End Services Section -->
     
@@ -317,20 +331,20 @@
     <!-- ======= Doctors Section ======= -->
     <section id="doctors" class="doctors">
       <div class="container">
-
+  
         <div class="section-title">
           <h2>Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
-
+  
         <div class="row">
+  
           <div class="col-lg-6">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1719307727/1_smorxp.png" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="images/1.png" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Rozan Chitrakar</h4>
-                <span>Chief Medical Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <h4>Dr.William</h4>
+                <span>M.B.B.S ,M.S General Medicine</span>
+                <p>Consultant Physician</p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
@@ -340,14 +354,14 @@
               </div>
             </div>
           </div>
-
+  
           <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1719307727/3_znxpo2.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="images/2.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Pratikshya Rai</h4>
-                <span>Anesthesiologist</span>
-                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                <h4>Dr.Grosh</h4>
+                <span>M.S. ENT</span>
+                <p>ENT Specialist </p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
@@ -357,14 +371,14 @@
               </div>
             </div>
           </div>
-
+  
           <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1719307728/2_qwcpj3.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="images/3.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Bratt Watson</h4>
-                <span>Cardiology</span>
-                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+                <h4>Dr.Bratt Watson</h4>
+                <span>M.D., General Medicine, DrNB Ophthalmology</span>
+                <p>Consultant Ophthalmology</p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
@@ -374,14 +388,14 @@
               </div>
             </div>
           </div>
-
+  
           <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1719307728/4_qpldhs.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="images/4.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Lauren Jones</h4>
-                <span>Neurosurgeon</span>
-                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                <h4>Dr.Lauren Jones</h4>
+                <span>M.B.B.S., M.D., Dermatology</span>
+                <p>Consultant Dermatologist </p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
@@ -391,18 +405,16 @@
               </div>
             </div>
           </div>
-
+  
         </div>
-
+  
       </div>
     </section><!-- End Doctors Section -->
-
-   
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
-
+  
         <div class="section-title">
           <h2>Contact</h2>
         </div>
@@ -416,7 +428,7 @@
       
       <div class="container">
         <div class="row mt-5">
-
+  
           <div class="col-lg-4">
             <div class="info">
               <div class="address">
@@ -424,13 +436,13 @@
                 <h4>Location:</h4>
                 <p>SRP Stradford, Rajiv Gandhi Salai, Dr. Vasi Estate, PTK nagar, Thiruvanmiyur, Chennai, Tamil Nadu 600041</p>
               </div>
-
+  
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
                 <p>vtshospitals@gmail.com</p>
               </div>
-
+  
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
@@ -438,9 +450,9 @@
               </div>
             </div>
           </div>
-
+  
           <div class="col-lg-8 mt-5 mt-lg-0">
-            <form action="https://formspree.io/f/xjkbvbbl" role="form" class="php-email-form" method="post">
+            <form action="" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -455,13 +467,13 @@
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <div class="text-center" style="margin-bottom: 20px;"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
-
+  
           </div>
-
+  
         </div>
-
+  
       </div>
     </section><!-- End Contact Section -->
 
@@ -472,7 +484,7 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-
+  
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
               <h3>VTS-CARE</h3>
@@ -491,7 +503,7 @@
               </div>
             </div>
           </div>
-
+  
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
@@ -502,7 +514,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contact</a></li>
             </ul>
           </div>
-
+  
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Features</h4>
             <ul>
@@ -513,17 +525,17 @@
               <li><i class="bx bx-chevron-right"></i> Patient record management</a></li>
             </ul>
           </div>
-
+  
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
             <p>Stay in touch with our newsletters</p>
             
           </div>
-
+  
         </div>
       </div>
     </div>
-
+  
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>VTS-CARE</span></strong>. All Rights Reserved
@@ -534,23 +546,18 @@
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
-  <script src="vendor/purecounter/purecounter.js"></script>
-  <script src="vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-
 </body>
 
 </html>
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
+  <!-- <script src="../static/hospital_app/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/hospital_app/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/hospital_app/vendor/php-email-form/validate.js"></script>
+  <script src="../static/hospital_app/vendor/purecounter/purecounter.js"></script>
+  <script src="../static/hospital_app/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../static/hospital_app/js/main.js"></script>
+  <script src="../static/hospital_app/js/script.js"></script> -->
+
   <script src="{% static 'hospital_app/static/hospital_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'hospital_app/static/hospital_app/vendor/glightbox/js/glightbox.min.js' %}"></script>
   <script src="{% static 'hospital_app/static/hospital_app/vendor/php-email-form/validate.js' %}"></script>
@@ -562,183 +569,167 @@
   <script src="{% static 'hospital_app/static/hospital_app/js/script.js' %}"></script>
   <script>
     function openModal() {
-    document.querySelector('.emgContainer').style.display = 'flex';
-    document.querySelector('body').style.overflow = 'hidden';
-}
-function closeModal() {
-    document.querySelector('.emgContainer').style.display = 'none';
-    document.querySelector('body').style.overflow = 'auto';
-}
-document.getElementById('send-button').addEventListener('click', sendMessage);
-document.getElementById('user-input').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        sendMessage();
+      document.querySelector('.emgContainer').style.display = 'flex';
+      document.querySelector('body').style.overflow = 'hidden';
     }
-});
+    function closeModal() {
+        document.querySelector('.emgContainer').style.display = 'none';
+        document.querySelector('body').style.overflow = 'auto';
+    }
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
 
-      const chatOutput = document.getElementById('chat-output');
-
-const botResponses = {
-    "hello": [
-        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Payments",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7. Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "1": [
-        "Checkout the dashboard and you can book your appointment"
-    ],
-    "2": [
-        "Go to the Dashboard and check out the master health checkup, there you can find appointment booking related to your master health checkup"
-    ],
-    "4": [
-        "Visit Dashboard and you can proceed your payments in online, offline and you can view your transaction bills history"
-    ],
-    "5": [
-        "You can consult our Specialized doctors",
-        "1.Dr.Venkat - Radiologist",
-        "2.Dr.Vicky - Neurologist",
-        "3.Dr.Nagendra - Anesthesiologist",
-        "4.Dr.Ravi - Ophthalmologist",
-        "5.Dr.Dev - General Surgeon",
-        "6.Dr.Uzma - Dermatologist",
-        "7.Dr.Durga - Orthopedic surgeon",
-        "8.Dr.Jagannadh - ENT",
-        "9.Dr.Sathya - Oncologist",
-        "10.Dr.Rahul - Sports Medicine Physician",
-        "11.Dr.Manoj - Nutritionist",
-        "12.Dr.Raj - Pulmonologist"
-    ],
-    "3": [
-        "Our Services:",
-        "Regular Checkup",
-        "Medicine",
-        "Diagnostic Services",
-        "Blood Test",
-        "Disabled Person",
-        "Health check packages"
-    ],
-    "6": "Visit the Dashboard and click on history there you can find Prescriptions",
-    "7": "You can checkout your reports on Dashboard",
-    "how are you?": "I am just a bot and I have no feelings, what about you?",
-    "fine": "That's great to hear",
-    "bye": [
-        "Goodbye! Have a great day and stay Healthy!"
-    ],
-    "hi": [
-        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "hey": [
-        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "hii": [
-        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "helloo": [
-        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "hie": [
-        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ]
-};
-
-function sendMessage() {
-    const userInput = document.getElementById('user-input').value.trim().toLowerCase();
     const chatOutput = document.getElementById('chat-output');
-    
-    const loadCont = document.createElement('div');
-    loadCont.classList.add('loadCont');
-    const loadAnimation = document.createElement('div');
-    loadAnimation.classList.add('repLoader');
-    loadCont.appendChild(loadAnimation);
 
-    if (userInput !== '') {
-        appendMessage(userInput, 'user');
-        chatOutput.appendChild(loadCont);
-        document.getElementById('user-input').value = '';
-        setTimeout(() => {
-            chatOutput.removeChild(loadCont);
-            const botResponse = getBotResponse(userInput);
-            appendMessage(botResponse, 'bot');
-        }, 4000);
-    }
-}
+    const botResponses = {
+      "hello": [
+          "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+          "1. Book Appointment",
+          "2. Services",
+          "3. Payments",
+          "4. Book for a doctor",
+          "5. Prescriptions",
+          "6. Reports",
+          "Press numbers between 1-6 to know more info"
+      ],
+      "1": [
+          "Checkout the dashboard and you can book your appointment"
+      ],
+  
+      "3": [
+          "Visit Dashboard and you can proceed your payments in online, offline and you can view your transaction bills history"
+      ],
+      "4": [
+          "You can book for our Specialized doctors",
+          "1.Dr.Venkat - General physician",
+          "2.Dr.Jagannadh - ENT",
+          "3.Dr.Sathya - Dermatologist",
+          "4.Dr.Manoj-Ophthalmologist"
+      ],
+      "2": [
+          "Our Services:",
+          "ENT Checkup",
+          "Orthopedic Services",
+          "Diagnostic Services",
+          "Emergency Services",
+          "Laboratory Services",
+          "Radiology Services"
+      ],
+      "5": "Visit the Dashboard and click on history there you can find Prescriptions",
+      "6": "You can checkout your reports on Dashboard",
+      "how are you?": "I am just a bot and I have no feelings, what about you?",
+      "fine": "That's great to hear",
+      "bye": [
+          "Goodbye! Have a great day and stay Healthy!"
+      ],
+      "hi": [
+          "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+          "1. Book Appointment",
+          "2. Services",
+          "3. Payments",
+          "4. Book for a doctor",
+          "5. Prescriptions",
+          "6. Reports",
+          "Press numbers between 1-6 to know more info"
+      ],
+      "hey": [
+          "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+          "1. Book Appointment",
+          "2. Services",
+          "3. Payments",
+          "4. Book for a doctor",
+          "5. Prescriptions",
+          "6. Reports",
+          "Press numbers between 1-6 to know more info"
+      ],
+      "hii": [
+          "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+          "1. Book Appointment",
+          "2. Services",
+          "3. Payments",
+          "4. Book for a doctor",
+          "5. Prescriptions",
+          "6. Reports",
+          "Press numbers between 1-6 to know more info"
+      ],
+      "helloo": [
+          "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+          "1. Book Appointment",
+          "2. Services",
+          "3. Payments",
+          "4. Book for a doctor",
+          "5. Prescriptions",
+          "6. Reports",
+          "Press numbers between 1-6 to know more info"
+      ],
+      "hie": [
+          "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+          "1. Book Appointment",
+          "2. Services",
+          "3. Payments",
+          "4. Book for a doctor",
+          "5. Prescriptions",
+          "6. Reports",
+          "Press numbers between 1-6 to know more info"
+      ]
+  };
 
-function appendMessage(message, sender) {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message', `${sender}-message`);
+      function sendMessage() {
+          const userInput = document.getElementById('user-input').value.trim().toLowerCase();
+          const chatOutput = document.getElementById('chat-output');
+          
+          const loadCont = document.createElement('div');
+          loadCont.classList.add('loadCont');
+          const loadAnimation = document.createElement('div');
+          loadAnimation.classList.add('repLoader');
+          loadCont.appendChild(loadAnimation);
 
-    if (Array.isArray(message)) {
-        const listElement = document.createElement('ul');
-        message.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = item;
-            listElement.appendChild(listItem);
-        });
-        messageElement.appendChild(listElement);
-    } else {
-        messageElement.textContent = message;
-    }
+          if (userInput !== '') {
+              appendMessage(userInput, 'user');
+              chatOutput.appendChild(loadCont);
+              document.getElementById('user-input').value = '';
+              setTimeout(() => {
+                  chatOutput.removeChild(loadCont);
+                  const botResponse = getBotResponse(userInput);
+                  appendMessage(botResponse, 'bot');
+              }, 4000);
+          }
+      }
 
-    chatOutput.appendChild(messageElement);
-    chatOutput.scrollTop = chatOutput.scrollHeight;
-    
-    messageElement.scrollIntoView({ behavior: 'smooth' });
-}
+      function appendMessage(message, sender) {
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('message', `${sender}-message`);
 
-function getBotResponse(userInput) {
-    return botResponses[userInput] || ["I'm sorry, I don't understand that."];
-}
+          if (Array.isArray(message)) {
+              const listElement = document.createElement('ul');
+              message.forEach(item => {
+                  const listItem = document.createElement('li');
+                  listItem.textContent = item;
+                  listElement.appendChild(listItem);
+              });
+              messageElement.appendChild(listElement);
+          } else {
+              messageElement.textContent = message;
+          }
 
-function toggleChatbot() {
-    const chatbotPopup = document.getElementById('chatbot-popup');
-    chatbotPopup.classList.toggle('hidden');
-}
+          chatOutput.appendChild(messageElement);
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+          
+          messageElement.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function getBotResponse(userInput) {
+          return botResponses[userInput] || ["I'm sorry, I don't understand that."];
+      }
+
+      function toggleChatbot() {
+          const chatbotPopup = document.getElementById('chatbot-popup');
+          chatbotPopup.classList.toggle('hidden');
+      }
       function logout(){
           const logoutUrl = document.getElementById('logout-url').value;
           window.location.href = logoutUrl;

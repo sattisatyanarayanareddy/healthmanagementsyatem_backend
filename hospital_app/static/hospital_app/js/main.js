@@ -95,3 +95,25 @@ function closeForm() {
 
 })()
 
+function validateForm() {
+  var pname = document.forms["myForm"]["pname"].value;
+  var passwd = document.forms["myForm"]["passwd"].value;
+  var emergencyDropdown = document.forms["myForm"]["emergency_dropdown"].value;
+  
+  if (pname.length <= 3) {
+      alert("Username must be more than 3 letters");
+      return false;
+  }
+  
+  if (passwd.length < 6) {
+      alert("Password must be at least 6 characters");
+      return false;
+  }
+  
+  if (emergencyDropdown === "Null") {
+      alert("Please select a specialization");
+      return false;
+  }
+  
+  return true;
+}
