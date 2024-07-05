@@ -133,7 +133,7 @@
                      <td> {{ forloop.counter }} </td>
                      <td>{{i.p_name}} </td>
                      <td>{{i.date}} </td>
-                     <td>{{i.update_symptoms}}</td>
+                     <td>{{i.symptoms}}</td>
                      <td class="patientBtnCont">
                         <button class="patientBtns" onclick="openMedCont('.medCont')"><i class="fa-solid fa-pills"></i></button>
                         <button disabled class="patientBtns disable"><i class="fa-regular fa-file-lines"></i></button>
@@ -205,88 +205,8 @@
    <div class="content" id="calendarpage">
       <div id="calendar" class="calendarCont"></div>
    </div>
-         </div>
-      </div>
-   </div>
 
-   <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="viewModalLabel">Report Details</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div id="modalContent">
-                    <div class="modalData">
-                      <label for="updateReportPname">Patient Name:</label>
-                      <input type="text" name="updateReportPname" id="updateReportPname" readonly>
-                    </div>
-                    <div class="modalData">
-                      <label for="updateReportRefDoc">Ref Doctor:</label>
-                      <input type="text" name="updateReportRefDoc" id="updateReportRefDoc" readonly>
-                    </div>
-                    <div class="modalData">
-                      <label for="updateReportDob">DOB:</label>
-                      <input type="date" name="updateReportDob" id="updateReportDob" readonly>
-                    </div>
-                    <div class="modalData">
-                      <label for="updateReportGender">Gender:</label>
-                      <input type="text" name="updateReportGender" id="updateReportGender" readonly>
-                    </div>
-                    <div class="modalData">
-                      <label for="updateReportVisitDate">Visit Date:</label>
-                      <input type="date" name="updateReportVisitDate" id="updateReportVisitDate" readonly>
-                    </div>
-                    <div class="modalData">
-                      <label for="updateReportPhone">Phone Number:</label>
-                      <input type="number" name="updateReportPhone" id="updateReportPhone" readonly>
-                    </div>
-                    <div class="modalData">
-                      <label for="updateReportEmail">Email:</label>
-                      <input type="email" name="updateReportEmail" id="updateReportEmail" readonly>
-                    </div>
-                      <hr>
-                      <table class="table">
-                          <thead>
-                              <tr>
-                                  <th>Test Name</th>
-                                  <th>Result</th>
-                                  <th>Bio Reference</th>
-                                  <th>Units</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td>Platlets Count</td>
-                                  <td>80</td>
-                                  <td>120</td>
-                                  <td>mg/dL</td>
-                              </tr>
-                              <tr>
-                                  <td>Typhoid</td>
-                                  <td>negative</td>
-                                  <td>negative/positive</td>
-                                  <td>-</td>
-                              </tr>
-                              <tr>
-                                  <td>Plasma Count</td>
-                                  <td>7.6</td>
-                                  <td>6.4-8.3
-                                    <td>g/dL</td>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-          </div>
-      </div>
-    </div>
-    <input type="hidden" id="logout-url" value="{% url 'doctor_logout_fun' %}">
+   <input type="hidden" id="logout-url" value="{% url 'doctor_logout_fun' %}">
    <input type="hidden" id="logout-url" value="{% url 'doctor_logout_fun' %}">
    <script src="../static/doctor_app/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
    <script src="../static/doctor_app/vendor/glightbox/js/glightbox.min.js"></script>

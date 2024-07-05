@@ -136,7 +136,8 @@ def doctor_dashboard(request):
         for patients in view_patients:
             patient_data_sent = {
                 'p_name': patients.name,
-                'date': patients.date
+                'date': patients.date,
+                'symptoms' : patients.health_concerns
             }
             print(f"{patient_data_sent}...........................@@@@@@")
             patient_data.append(patient_data_sent)
