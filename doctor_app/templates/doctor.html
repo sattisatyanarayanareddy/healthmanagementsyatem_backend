@@ -40,7 +40,7 @@
    <link rel="stylesheet" href="{% static 'doctor_app/css/evo-calendar.midnight-blue.min.css' %}" >
    <link rel="preconnect" href="https://fonts.googleapis.com" >
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
-
+   <script src="https://kit.fontawesome.com/ea5cac0a5d.js" crossorigin="anonymous"></script>
    <!-- Template Main CSS File -->
    <link rel="stylesheet" href="{% static 'doctor_app/css/home.css' %}"/>
    <link rel="stylesheet" href="{% static 'doctor_app/css/style.css' %}"/>
@@ -64,7 +64,6 @@
             <li><a class="nav-link scrollto active" data-section="home" href="#home">Home</a></li>
             <li><a class="nav-link scrollto" data-section="patient" href="#patient">Patients</a></li>
             <li><a class="nav-link scrollto" data-section="calendarpage" href="#calendarpage">Calender</a></li>
-            <li><a class="nav-link scrollto" data-section="alerts" href="#alerts">Alerts</a></li>
             <li><button type="button" onclick="logout()" class="logout">Log out</button></li>
          </ul>
          <i class="bi bi-list mobile-nav-toggle"></i>
@@ -79,6 +78,43 @@
    </section>
    <div class="content" id="patient">
       <div class="inpatient">
+         <div class="medCont">
+            <div class="medCard">
+               <p>Medication</p>
+               <span class="closeMed" onclick="closeMedCont('.medCont')">&#x2715;</span>
+               <table class="medTable table table-bordered">
+                  <thead>
+                     <tr id="medRow">
+                        <th>Medicine</th>
+                        <th>M</th>
+                        <th>A</th>
+                        <th>N</th>             
+                     </tr>
+                  </thead>
+                  <tbody id="tbody">
+                  </tbody>
+               </table>
+               <div class="medBtnCont">
+                  <button class="medBtn" onclick="addMed()">Add</button>
+               </div>
+               <div class="dropdownCont">
+                  <p>Select the Tests</p>
+                  <div class="dropbtnInpCcontainer">
+                     <div class="selected-items"></div>
+                  </div>
+                  <div class="dropdownOpt">
+                     <a href="#" class="dropdown-item">test-1</a>
+                     <a href="#" class="dropdown-item">test-2</a>
+                     <a href="#" class="dropdown-item">test-3</a>
+                     <a href="#" class="dropdown-item">test-4</a>
+                     <a href="#" class="dropdown-item">test-5</a>
+                     <a href="#" class="dropdown-item">test-6</a>
+                  </div>
+                  <input type="text" class="selectedOpts">
+               </div>
+               <button class="medBtn" id="saveMed" onclick="saveMedData()">Save</button>
+            </div>
+         </div>
          <h3>Patient Details</h3>
          <div class="tableCont">
             <table id="patientTable" class="table table-bordered">
@@ -87,6 +123,7 @@
                      <th>S.No</th>
                      <th>Patient Name</th>
                      <th>Date</th>
+                     <th>Symptoms</th>
                      <th>Actions</th>
                   </tr>
                </thead>
@@ -96,7 +133,11 @@
                      <td> {{ forloop.counter }} </td>
                      <td>{{i.p_name}} </td>
                      <td>{{i.date}} </td>
-                     <td><button onclick="openPopup()" type="submit" class="view">View</button></td>
+                     <td>{{i.update_symptoms}}</td>
+                     <td class="patientBtnCont">
+                        <button class="patientBtns" onclick="openMedCont('.medCont')"><i class="fa-solid fa-pills"></i></button>
+                        <button disabled class="patientBtns disable"><i class="fa-regular fa-file-lines"></i></button>
+                     </td>
                   </tr>
                   {% endfor %}
                </tbody>
@@ -163,78 +204,6 @@
    </div>
    <div class="content" id="calendarpage">
       <div id="calendar" class="calendarCont"></div>
-   </div>
-   <div class="content" id="alerts">
-      <div class="alertCont">
-         <div class="alertTable">
-            <table class="table table-bordered text-center">
-               <thead>
-                  <tr>
-                     <th>S.No.</th>
-                     <th>Patient</th>
-                     <th>Date</th>
-                     <th>Time</th>
-                     <th>Symtoms</th>
-                     <th>Action</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  
-                  <tr>
-                     <td>1</td>
-                     <td>John Doe</td>
-                     <td>26-06-2024</td>
-                     <td>12:45 PM</td>
-                     <td>Fever, Cough, Cold</td>
-                     <td><button class="view">Accept</button></td>
-                  </tr>
-                  <tr>
-                     <td>2</td>
-                     <td>Will Smith</td>
-                     <td>27-06-2024</td>
-                     <td>3:10 PM</td>
-                     <td>Body pains, Fever</td>
-                     <td><button class="view">Accept</button></td>
-                  </tr>
-                  <tr>
-                     <td>3</td>
-                     <td>Tony Stark</td>
-                     <td>28-06-2024</td>
-                     <td>10:20 AM</td>
-                     <td>Head Ache, Stomach Ache</td>
-                     <td><button class="view">Accept</button></td>
-                  </tr>
-                  <tr>
-                     <td>4</td>
-                     <td>John Doe</td>
-                     <td>28-06-2024</td>
-                     <td>5:40 PM</td>
-                     <td>Vomits, Cough</td>
-                     <td><button class="view">Accept</button></td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-         <div class="alertScroll">
-            {% for alert in alerts_list %}
-            <div class="alertCard">
-               <div class="alertCardData">
-                  <label>Patient Name:</label>
-                  <p>{{alert.username}}</p>
-               </div>
-               <div class="alertCardData">
-                  <label>Phone Number:</label>
-                  <p>{{alert.mobile}}</p>
-               </div>
-               <div class="alertCardData">
-                  <label>Action:</label>
-                  <p><button class="view">Accept</button></p>
-               </div>
-            </div>
-            {% endfor %}
-            
-         </div>
-      </div>
    </div>
          </div>
       </div>
@@ -339,7 +308,50 @@
    <script src="{% static 'doctor_app/js/script.js' %}"></script>
    <script src="{% static 'doctor_app/js/calendar.js' %}"></script>
    <script>
-      
+
+         const dropdownItems = document.querySelectorAll('.dropdown-item');
+         const selectedItemsContainer = document.querySelector('.selected-items');
+         const selectedOpts = document.querySelector('.selectedOpts');
+         const save = document.getElementById('saveMed');
+
+         dropdownItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+               e.preventDefault();
+               save.style.display = 'block'
+               addSelectedItem(item);
+            });
+         });
+     
+         function addSelectedItem(item) {
+             const selectedItem = document.createElement('div');
+             selectedItem.classList.add('selected-item');
+     
+             const itemLabel = document.createElement('span');
+             itemLabel.textContent = item.textContent;
+     
+             const removeBtn = document.createElement('span');
+             removeBtn.classList.add('remove-btn');
+             removeBtn.textContent = 'x';
+             removeBtn.addEventListener('click', () => {
+                 selectedItemsContainer.removeChild(selectedItem);
+                 item.style.display = 'block';
+                 updateSelectedOptsPlaceholder();
+             });
+             selectedItem.appendChild(itemLabel);
+             selectedItem.appendChild(removeBtn);
+             selectedItemsContainer.appendChild(selectedItem);
+             item.style.display = 'none';
+             updateSelectedOptsPlaceholder();
+         }
+     
+         function updateSelectedOptsPlaceholder() {
+            const selectedTexts = [];
+            const selectedItems = document.querySelectorAll('.selected-item span:first-child');
+            selectedItems.forEach(function(item) {
+               selectedTexts.push(item.textContent);
+            });
+            selectedOpts.value = selectedTexts.length > 0 ? selectedTexts : 'Select Test';
+         }
       function logout(){
           const logoutUrl = document.getElementById('logout-url').value;
           window.location.href = logoutUrl;

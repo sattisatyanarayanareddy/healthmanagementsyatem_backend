@@ -1012,33 +1012,165 @@ span {
     margin: 0 20px;
     width: 250px;
 }
-.alertCont {
-    margin-top: 60px;
+.patientBtnCont {
     display: flex;
-    justify-content: space-evenly;
 }
-.alertTable thead {
+.patientBtns {
+    color: #fff;
     background-color: #3fbbc0;
-    color: white;
-}
-.alertScroll {
-    height: 400px;
-    overflow-y: scroll;
-    margin-top: -30px;
-    padding: 30px;
-}
-.alertCard {
-    background-color: #fff;
-    box-shadow: 0 0 10px #bbb;
-    width: 300px;
-    padding: 20px;
+    border: none;
     border-radius: 20px;
-    margin-bottom: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    margin: 0 5px;
+    /* transition: color 0.5s; */
+    transition: background-color 0.5s;
 }
-.alertCardData {
+.patientBtns:hover:not(.disable) {
+    border: solid 2px #3fbbc0;
+    background-color: #fff;
+    color: #3fbbc0;
+}
+.disable {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+.medTable th {
+    background-color: #3fbbc0;
+    color: #fff;
+    text-align: center;
+}
+.medCont {
+    position: fixed;
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #bdbdbd9a;
+    z-index: 99999;
+    transition: all 0.3s;
+}
+.medCard {
+    position: relative;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 20px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
-.alertCardData label {
+.closeMed {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    transition: font-weight 0.5s;
+    transition: color 0.3s;
+}
+.closeMed:hover {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+.medTable {
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ddd;
+}
+.medName {
+    border: none;
+    width: 100%;
+}
+.medTable td {
+    text-align: center;
+}
+.removeMed {
+    color: #fff;
+    background-color: #f00;
+    border: none;
+    font-size: 25px;
+    line-height: 10px;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    font-weight: 1000;
+}
+.medBtnCont {
+    display: flex;
+    justify-content: center;
+}
+.medBtn {
+    background-color: #40BBC0;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin: 0 10px;
+}
+#saveMed {
+    display: none;
+}
+.dropdownCont {
+    margin: 30px 0;
+    width: 100%;
+    position: relative;
+}
+.dropbtnInpCcontainer {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 8px;
+    cursor: pointer;
+    width: 400px;
+    box-sizing: border-box;
+}
+.selectedOpts {
+    display: none;
+    /* cursor: pointer; */
+}
+
+.dropdownOpt {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%;
+}
+
+.dropdownOpt .dropdown-item {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownOpt .dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdownCont:hover .dropdownOpt {
+    display: block;
+}
+.selected-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+.selected-item {
+    padding: 4px 8px;
+    background-color: #e0e0e0;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+.selected-item .remove-btn {
+    margin-left: 8px;
+    cursor: pointer;
+    color: #aaa;
     font-weight: bold;
 }

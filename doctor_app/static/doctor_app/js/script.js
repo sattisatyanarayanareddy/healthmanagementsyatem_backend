@@ -270,3 +270,110 @@ function setStatus(id, className) {
         }
     });
 }
+
+function openMedCont(className) {
+    document.querySelector(className).style.display = 'flex';
+    document.querySelector('body').style.overflow = 'auto';
+}
+
+function closeMedCont(className) {
+    document.querySelector(className).style.display = 'none';
+    document.querySelector('body').style.overflow = 'hidden';
+}
+
+function removeMed(btn) {
+    const td = btn.parentNode.parentNode;
+    td.style.display = 'none'
+}
+
+function addMed() {
+    const tbody = document.getElementById('tbody');
+    const theadTr = document.getElementById('medRow');
+    const save = document.getElementById('saveMed');
+
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    const td2 = document.createElement('td');
+    const td3 = document.createElement('td');
+    const td4 = document.createElement('td');
+    const td5 = document.createElement('td');
+    
+    const inpt = document.createElement("input");
+    inpt.setAttribute("type", "text");
+    inpt.setAttribute("placeholder", "Enter Med Name");
+    inpt.classList.add("medName");
+    td1.appendChild(inpt)
+
+    const morning = document.createElement('input');
+    morning.type = 'checkbox';
+    morning.name = 'time';
+    morning.value = 'M';
+    td2.appendChild(morning)
+    
+    const afternoon = document.createElement('input');
+    afternoon.type = 'checkbox';
+    afternoon.name = 'time';
+    afternoon.value = 'A';
+    td3.appendChild(afternoon)
+    
+    const night = document.createElement('input');
+    night.type = 'checkbox';
+    night.name = 'time';
+    night.value = 'N';
+    td4.appendChild(night)
+
+    const rmBtn = document.createElement('button');
+    rmBtn.classList.add('removeMed');
+    rmBtn.innerHTML = "&#8722;";
+    rmBtn.setAttribute('onclick', 'removeMed(this)');
+    td5.appendChild(rmBtn);
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+
+    const removeTr = document.createElement('th');
+    removeTr.innerText = "remove";
+    if (theadTr.children.length == 4) {
+        theadTr.appendChild(removeTr);
+    }
+    tbody.appendChild(tr);
+    if (tbody.children.length == 0) {
+        save.style.display = 'none'
+    } else {
+        save.style.display = 'block'
+    }
+}
+function saveMedData() {
+    var tbody = document.getElementById('tbody');
+    var medData = {};
+
+    var rows = tbody.getElementsByTagName('tr');
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var inputs = row.getElementsByTagName('input');
+
+        var medName = inputs[0].value.trim();
+        var checkboxValues = [];
+        var sum = 0;
+
+        for (var j = 1; j < 4; j++) {
+            var checkbox = inputs[j];
+            checkboxValues.push(checkbox.checked ? 1 : 0);
+            sum += checkbox.checked;
+        }
+        if (medName !== "" && sum !== 0) {
+            medData[medName] = checkboxValues;
+        } else {
+            alert('Please fill all the Fields..!');
+            return
+        }
+    }
+
+    var jsonData = JSON.stringify(medData);
+
+    console.log(jsonData);
+    alert('Preciption Saved...!')
+}
