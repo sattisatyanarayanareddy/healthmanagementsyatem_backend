@@ -6,9 +6,6 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
 }
-::-webkit-scrollbar {
-  display: none;
-}
 a {
   color: #1977cc;
   text-decoration: none;

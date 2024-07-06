@@ -377,3 +377,26 @@ function saveMedData() {
     console.log(jsonData);
     alert('Preciption Saved...!')
 }
+var acpt = false;
+function accept(button) {
+    // Hide the button
+    button.style.display = 'none';
+
+    // Show the loading container
+    console.log(acpt);
+    if (!acpt) {
+        acpt = true;
+        const loadCont = button.nextElementSibling;
+        loadCont.style.display = 'flex';
+    
+        // Hide the loading container and show the button again after 4 seconds
+        setTimeout(() => {
+            loadCont.style.display = 'none';
+            button.style.display = 'inline-block';
+            button.style.backgroundColor = '#0b0'
+            button.innerText = 'Accepted'
+        }, 4000);
+    } else {
+        button.style.display = 'inline-block'
+    }
+}

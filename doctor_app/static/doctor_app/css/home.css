@@ -4,51 +4,63 @@ body {
     padding: 0;
     background-color: #f4f4f9;
 }
+
 .content {
     display: none;
     padding: 20px 60px;
 }
+
 .content.active {
     display: block;
 }
+
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
     width: 100%;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
+
 .btn-primary:hover {
-    background-color: #40BBC0; 
+    background-color: #40BBC0;
     border-color: #0056b3;
 }
-.btn-primary:focus, .btn-primary.focus {
+
+.btn-primary:focus,
+.btn-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
+
 @keyframes slideInLeft {
     from {
         opacity: 0;
         transform: translateX(-100%);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
     }
 }
+
 .registration-form {
     background-color: #fff;
     padding: 20px 40px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 400px;
     margin: auto;
 }
+
 .registration-form h2 {
     text-align: center;
     margin-bottom: 20px;
 }
+
 .registration-form label {
     font-weight: bold;
 }
+
 .registration-form input[type="text"],
 .registration-form input[type="email"],
 .registration-form input[type="number"],
@@ -63,11 +75,13 @@ body {
     border-radius: 4px;
     font-size: 14px;
 }
+
 .registration-form input:focus,
 .registration-form textarea:focus,
 .registration-form select:focus {
     outline: 1.5px solid #3fbbc0;
 }
+
 .registration-form input[type="submit"] {
     background-color: #3fbbc0;
     color: white;
@@ -83,17 +97,21 @@ body {
     border-radius: 20px;
     transition: all 0.3s;
 }
+
 .registration-form input[type="submit"]:hover {
     background-color: #247174;
 }
-#doctor h1{
+
+#doctor h1 {
     text-align: center;
 }
+
 .doctor-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
 .doctor-card {
     position: relative;
     display: flex;
@@ -103,10 +121,11 @@ body {
     padding: 20px;
     margin: 10px;
     width: 250px;
-    height: 200px; 
+    height: 200px;
     border-radius: 8px;
     box-shadow: 0 0 4px #3fbbc0;
 }
+
 .docProfile {
     position: absolute;
     padding-top: 10px;
@@ -120,15 +139,18 @@ body {
     background-color: #fff;
     /* display: none; */
 }
+
 .docProfile p {
     margin-top: -10px !important;
 }
+
 .docProfile img {
     width: 100px;
     border-radius: 50px;
     margin-bottom: 5px;
     transition: margin 0.6s;
 }
+
 .docDetails {
     text-align: center;
     position: absolute;
@@ -136,19 +158,24 @@ body {
     bottom: 80px;
     transition: bottom 0.6s;
 }
+
 .doctor-card:hover .docProfile img {
     margin-top: -70px;
 }
+
 .doctor-card:hover .docDetails {
     bottom: 20px;
 }
+
 .doctor-card h3 {
     margin-bottom: 8px;
 }
+
 .doctor-card p {
     margin: 1px 0;
     color: #666;
 }
+
 .chat-button {
     border: none;
     padding: 5px 20px;
@@ -158,81 +185,100 @@ body {
     color: white;
     transition: all 0.3s;
 }
+
 .chat-button:hover {
     background-color: #247174;
 }
+
 span {
     flex: 1;
 }
+
 #bookApp {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 #bookApp h2 {
     margin-bottom: 40px;
 }
+
 .appointment-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-.appointment-container :hover{
+
+.appointment-container :hover {
     cursor: pointer;
 }
+
 .appointment-card {
     background-color: #f9f9f9;
     padding: 20px;
     margin: 10px;
-    width: calc(30% - 10px); 
+    width: calc(30% - 10px);
     border-radius: 8px;
     box-shadow: 0 0 12px #3fbbc0;
 }
+
 .appointment-card h2 {
     margin-bottom: 20px;
 }
+
 .appointment-card p {
     color: #666;
     margin-bottom: 10px !important;
     text-align: start !important;
 }
+
 #payment-history {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 #payment-history h2 {
     margin: 40px 0 20px;
 }
+
 #payment-history table {
     width: 600px;
     text-align: center;
 }
+
 #payment-history table thead {
     background-color: #3fbbc0;
     color: white;
 }
+
 #ready-to-pay {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 #ready-to-pay h2 {
     margin: 40px 0 20px;
 }
+
 #ready-to-pay table {
     width: 600px;
     text-align: center;
     margin-bottom: 40px;
 }
+
 #ready-to-pay table thead {
     background-color: #3fbbc0;
     color: white;
 }
+
 span {
     flex: 1;
 }
+
 .payBtn {
     background-color: #40BBC0;
     color: white;
@@ -245,21 +291,25 @@ span {
     border-radius: 4px;
     cursor: pointer;
 }
+
 .payBtn:hover {
     background-color: #3745dd;
 }
+
 .tests {
     display: flex;
     list-style-type: none;
     padding: 0;
     margin-top: 20px;
 }
+
 .tests li {
     padding: 10px 20px;
     background-color: #eee;
     margin-right: 30px;
     border-radius: 20px;
 }
+
 .checkBtn {
     border: none;
     padding: 8px 20px;
@@ -268,16 +318,19 @@ span {
     background-color: #3fbbc0;
     border-radius: 20px;
 }
+
 .testIncl {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 30px 0;
 }
+
 #appointment p {
     text-align: center;
     margin-bottom: 30px;
 }
+
 #appointmentForm {
     width: 400px;
     position: relative;
@@ -287,10 +340,12 @@ span {
     border-radius: 20px;
     padding: 30px;
 }
+
 #appointmentForm label {
     position: absolute;
     left: 30px;
 }
+
 #appointmentForm input {
     position: absolute;
     right: 30px;
@@ -300,9 +355,11 @@ span {
     background-color: #eeee;
     width: 200px;
 }
+
 #appointmentForm input:focus {
     outline: none;
 }
+
 .bookBtn {
     color: white;
     border: none;
@@ -311,33 +368,48 @@ span {
     padding: 8px 20px;
     margin-top: 20px;
 }
+
 .search-container {
     text-align: center;
     margin: 30px 0;
 }
+
 .search-container input {
     padding: 10px;
     width: 400px;
     border-radius: 10px;
     border: 2px solid #bbb;
 }
+
 .search-container input:focus {
     outline: none;
 }
-.history, .book, .addCont{
+
+.history,
+.book,
+.addCont {
     margin-left: 20px;
     position: relative;
 }
-.history li:hover ~ .historyCont, .historyCont:hover {
+
+.history li:hover~.historyCont,
+.historyCont:hover {
     display: block;
 }
-.book li:hover ~ .bookCont, .bookCont:hover {
+
+.book li:hover~.bookCont,
+.bookCont:hover {
     display: block;
 }
-.addCont li:hover ~ .addOptions, .addOptions:hover {
+
+.addCont li:hover~.addOptions,
+.addOptions:hover {
     display: block;
 }
-.historyCont, .bookCont, .addOptions {
+
+.historyCont,
+.bookCont,
+.addOptions {
     display: none;
     position: absolute;
     top: -10px;
@@ -347,38 +419,51 @@ span {
     box-shadow: 0 0 10px #555;
     z-index: 2;
 }
+
 .historyCont {
     left: 50px;
 }
+
 .bookCont {
     left: 95px;
 }
+
 .addOptions {
     left: 30px;
 }
-.historyLink, .addOpt {
+
+.historyLink,
+.addOpt {
     padding: 10px 20px !important;
     border: none !important;
     transition: all 0.3s;
 }
-.historyLink:hover, .addOpt:hover {
+
+.historyLink:hover,
+.addOpt:hover {
     background-color: #40BBC0;
     color: white !important;
     cursor: pointer;
 }
+
 .addPerson {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.historySubPage, .addPerson {
+
+.historySubPage,
+.addPerson {
     text-align: center;
     visibility: hidden;
     max-height: 0;
 }
-.historySubPage .visible, .addPerson .visible {
+
+.historySubPage .visible,
+.addPerson .visible {
     visibility: visible;
 }
+
 .reportCardList {
     margin-top: 30px;
     display: flex;
@@ -387,20 +472,24 @@ span {
     gap: 20px;
     padding-bottom: 50px;
 }
+
 .reportCard {
     width: 360px;
     border-radius: 20px;
     padding: 25px 30px;
     box-shadow: 0 0 10px #bbb;
 }
+
 .dataHolder {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
 .dataHolder label {
     font-weight: bold;
 }
+
 .dataHolder input {
     width: 160px;
     padding-left: 15px;
@@ -408,26 +497,32 @@ span {
     transition: color 1s;
     background: transparent;
 }
+
 .dataHolder input:focus {
     outline: none;
 }
+
 .dataHolder textarea {
     border: none;
     margin-bottom: 20px;
     transition: color 1s;
     background: transparent;
 }
+
 .dataHolder textarea:focus {
     outline: none;
 }
+
 .reportViewBtn {
     display: flex;
     justify-content: space-between;
     width: 200px;
 }
+
 .reportViewBtn label {
     font-weight: bold;
 }
+
 .reportViewBtn button {
     background-color: #3fbbc0;
     color: white;
@@ -435,6 +530,7 @@ span {
     border-radius: 15px;
     padding: 5px 10px;
 }
+
 .prescripCard {
     position: relative;
     width: 400px;
@@ -444,9 +540,11 @@ span {
     overflow: hidden;
     transition: color 1s;
 }
+
 .prescripCard .dataHolder input {
     width: 200px;
 }
+
 .plus {
     position: absolute;
     top: 10px;
@@ -457,16 +555,20 @@ span {
     transition: scale 0.8s;
     z-index: -1;
 }
+
 .prescripCard:hover .plus {
     scale: 150;
 }
+
 .prescripCard:hover {
     color: white;
 }
+
 .prescripCard:hover .dataHolder input,
 .prescripCard:hover .dataHolder textarea {
     color: white;
 }
+
 .bookDoctorCont {
     position: fixed;
     display: none;
@@ -480,23 +582,28 @@ span {
     z-index: 99999;
     transition: all 0.3s;
 }
+
 .bookDoctorCont .registration-form,
-.historySubPage .registration-form{
+.historySubPage .registration-form {
     text-align: start;
     margin: 40px auto;
     width: 500px;
 }
+
 .regForm {
     display: flex;
     position: relative;
 }
+
 .regForm .closeBtn {
     top: -60px !important;
     right: -25px !important;
 }
+
 .regForm input {
     height: 30px;
 }
+
 .view {
     border: none;
     background-color: #3fbbc0;
@@ -506,11 +613,14 @@ span {
     transition: color 0.5s;
     transition: background-color 0.3s;
 }
+
 .prescripCard:hover .view {
     background-color: white;
     color: #3fbbc0;
 }
-.prescripCont, .prevAppCont {
+
+.prescripCont,
+.prevAppCont {
     position: fixed;
     display: flex;
     display: none;
@@ -523,6 +633,7 @@ span {
     background-color: #bdbdbd9a;
     z-index: 99999;
 }
+
 .prescripDetailsCard {
     position: relative;
     display: flex;
@@ -532,22 +643,30 @@ span {
     padding: 70px 40px 30px;
     box-shadow: 0 0 10px #3fbbc0;
 }
+
 .updateDetails {
     display: flex;
     margin-top: 20px;
 }
-.prescripDetailsLeft, .updateDetailsLeft {
+
+.prescripDetailsLeft,
+.updateDetailsLeft {
     margin-right: 30px;
     width: 410px;
 }
-.prescripDetailsRight, .updateDetailsRight{
+
+.prescripDetailsRight,
+.updateDetailsRight {
     width: 430px;
 }
-.prescripData, .updateDataholder {
+
+.prescripData,
+.updateDataholder {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 .updateDetailsBtn {
     border: none;
     background-color: #3fbbc0;
@@ -555,34 +674,44 @@ span {
     border-radius: 20px;
     padding: 5px 10px;
 }
-.prescripData label, .updateDataholder label {
+
+.prescripData label,
+.updateDataholder label {
     font-weight: bold;
 }
+
 .prescripData input {
     width: 195px;
     /* border: none; */
 }
+
 .prevAppCard {
     position: relative;
     background-color: #fff;
     border-radius: 20px;
     padding: 60px 30px 30px;
 }
+
 .prevAppData {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
 .prevAppData label {
     font-weight: bold;
 }
-.prevAppData input, .updateDetails input {
+
+.prevAppData input,
+.updateDetails input {
     width: 200px;
     margin-left: 15px;
 }
+
 .prevAppData input:focus {
     outline: none;
 }
+
 .prevAppData button {
     border: none;
     background-color: #3fbbc0;
@@ -593,6 +722,7 @@ span {
     transition: color 0.5s;
     transition: background-color 0.3s;
 }
+
 .popup {
     display: none;
     position: fixed;
@@ -622,6 +752,7 @@ span {
     opacity: 0;
     animation: fadeIn 0.3s forwards;
 }
+
 .close-btn {
     position: absolute;
     top: 10px;
@@ -631,9 +762,11 @@ span {
     color: #999;
     transition: color 0.3s ease;
 }
+
 .close-btn:hover {
     color: #3fbbc0;
 }
+
 .logout {
     border: none;
     background-color: #40BBC0;
@@ -644,15 +777,34 @@ span {
     border-radius: 20px;
     transition: background-color 0.5s;
 }
+
 .logout:hover {
     background-color: #f00;
 }
+
 .tableCont {
     overflow: auto;
     width: fit-content;
     height: 295px;
     border: 1px solid #ddd;
+    margin-right: 30px;
 }
+
+.tableCont::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.tableCont::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+.tableCont::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #3fbbc0;
+}
+
 .tableCont thead th {
     position: sticky;
     top: 0;
@@ -661,43 +813,153 @@ span {
     border-color: #fff;
     color: #fff;
 }
+
 #patientTable {
     width: 500px;
     text-align: center;
+    margin-right: 5px;
 }
+
 .upComingCont {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .upComingTable {
     width: 500px;
 }
+
 .upComingTable th {
     background-color: #3fbbc0;
     color: white;
 }
-#viewModal {
-    z-index: 999999;
-}
+
 .modalData {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
+
 .modalData label {
     font-weight: bold;
 }
+
 .modalData input {
     padding: 5px 10px;
     border-radius: 10px;
     border: 1.5px solid #3fbbc0;
     width: 250px;
 }
+
 .modalData input:focus {
     outline: 1.5px solid #3fbbc0;
 }
-.invoiceCont, .invoicePayCont {
+
+.alertScroll {
+    height: 400px;
+    overflow-y: scroll;
+    margin-top: -30px;
+    padding: 30px;
+}
+
+.alertScroll::-webkit-scrollbar-track {
+    margin-top: 90px;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.alertScroll::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+.alertScroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #3fbbc0;
+}
+
+.alertCard {
+    background-color: #fff;
+    box-shadow: 0 0 10px #bbb;
+    width: 300px;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.alertCardData {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alertCardData label {
+    font-weight: bold;
+}
+
+.acptEmgCont {
+    border: solid 2px rgba(255, 0, 0, 0.7);
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    position: relative;
+    display: none;
+}
+
+.acptBtn {
+    border: none;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    padding: 5px 0;
+    width: 100px;
+    border-radius: 20px;
+    transition: color 0.5s;
+}
+
+.acptLoadCont {
+    background-color: rgba(255, 0, 0);
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 8.8px 0;
+    width: 100px;
+    display: none;
+}
+
+.acceptLoader {
+    width: 50px;
+    aspect-ratio: 3;
+    --_g: no-repeat radial-gradient(circle closest-side, #fff 90%, rgba(255, 0, 0, 0.7));
+    background:
+        var(--_g) 0% 50%,
+        var(--_g) 50% 50%,
+        var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+    20% {
+        background-position: 0% 0%, 50% 50%, 100% 50%
+    }
+
+    40% {
+        background-position: 0% 100%, 50% 0%, 100% 50%
+    }
+
+    60% {
+        background-position: 0% 50%, 50% 100%, 100% 0%
+    }
+
+    80% {
+        background-position: 0% 50%, 50% 50%, 100% 100%
+    }
+}
+
+.invoiceCont,
+.invoicePayCont {
     position: fixed;
     display: none;
     justify-content: center;
@@ -710,6 +972,7 @@ span {
     z-index: 999999;
     transition: all 0.3s;
 }
+
 .invoiceCard {
     position: relative;
     background-color: #fff;
@@ -721,9 +984,11 @@ span {
     padding: 30px;
     border-radius: 20px;
 }
+
 .invoiceCard h3 {
     margin-bottom: 30px;
 }
+
 .invoiceCard::before {
     content: '';
     width: 100%;
@@ -737,56 +1002,72 @@ span {
     background-size: 400px;
     opacity: 0.3;
 }
+
 .details {
     display: flex;
 }
+
 .patientDetails {
     width: 250px;
     margin-right: 30px;
 }
+
 .hospitalDetails {
     width: 400px;
 }
-.patientData, .docData {
+
+.patientData,
+.docData {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
-.patientData label, .docData label {
+
+.patientData label,
+.docData label {
     font-weight: 500;
 }
-.patientData input, .amountWords input {
+
+.patientData input,
+.amountWords input {
     background: transparent;
     border: 1px solid black;
 }
+
 .amountWords input:focus,
 .billAmount input:focus,
 .patientData input:focus,
 .docData input:focus {
     outline: none;
 }
+
 .billAmount {
     font-weight: 500;
     margin: 20px 0;
 }
+
 .billAmount input {
     font-weight: 500;
     width: 100px;
     border: none;
     background: transparent;
 }
+
 .billTable {
     overflow: auto;
     height: 200px;
     width: fit-content;
 }
+
 .billTable::-webkit-scrollbar {
     display: none;
 }
+
 .billTable table {
     text-align: center;
     background-color: #ffffffb5;
 }
+
 .billTable thead th {
     position: sticky;
     top: 0;
@@ -794,34 +1075,42 @@ span {
     background-color: #3fbbc0;
     color: #fff;
 }
+
 .amountWords {
     font-weight: 500;
 }
+
 .amountWords input {
     width: 95%;
     border: none;
 }
+
 .inpatient {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
 }
+
 .statusCont {
     display: flex;
 }
+
 .recoveryStatus {
     display: flex;
     justify-content: space-between;
 }
+
 .recoveryStatus input {
     width: 15px;
     margin-right: 10px;
 }
+
 .aptHolder {
     display: flex;
     justify-content: center;
 }
+
 .aptsCont {
     width: 100%;
     max-width: 750px;
@@ -833,22 +1122,26 @@ span {
     flex-direction: column;
     margin-top: 40px;
 }
+
 .aptsNav {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 40px;
 }
+
 .aptsNav input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
 }
+
 .aptsNav input:focus {
     outline: none;
 }
+
 .aptsTable {
     flex: 1;
     overflow-y: scroll;
@@ -856,60 +1149,74 @@ span {
     flex-direction: column;
     background-color: #eff1f0;
 }
+
 .aptsRow {
-  display: flex;
-  padding: 1.3rem;
-  background-color: white;
-  margin: 4px 0px;
-  border-radius: 10px;
+    display: flex;
+    padding: 1.3rem;
+    background-color: white;
+    margin: 4px 0px;
+    border-radius: 10px;
 }
+
 .aptsRow div {
-  flex: 1;
-  text-align: center;
+    flex: 1;
+    text-align: center;
 }
+
 .aptsRow div:first-child {
-  flex: 0.5;
+    flex: 0.5;
 }
+
 .aptsHeader {
-  display: flex;
-  background-color: #3fbbc0;
-  color: white;
-  padding: 1.2rem;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+    display: flex;
+    background-color: #3fbbc0;
+    color: white;
+    padding: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
+
 .aptsHeader div {
-  flex: 1;
-  text-align: center;
+    flex: 1;
+    text-align: center;
 }
+
 .aptsHeader div:first-child {
-  flex: 0.5;
+    flex: 0.5;
 }
+
 .aptsHeader h4 {
-  color: black;
+    color: black;
 }
+
 .containerbox {
     display: flex;
     justify-content: center;
-    padding-top: 2px;  
+    padding-top: 2px;
     /* flex-grow: 5; */
-  }
-#categoryFilter, #statusFilter {
+}
+
+#categoryFilter,
+#statusFilter {
     padding: 8px;
     border-radius: 10px;
 }
-#categoryFilter:focus, #statusFilter:focus {
+
+#categoryFilter:focus,
+#statusFilter:focus {
     outline: none;
 }
-  .docNav {
+
+.docNav {
     background-color: aliceblue;
     border-radius: 30px;
     box-shadow: 0 2px 15px 0 rgb(0 0 0 / 50%);
     width: 500px;
     padding: 20px 15px;
-  }
+}
+
 .patNav {
     background-color: aliceblue;
     border-radius: 30px;
@@ -917,104 +1224,129 @@ span {
     width: 1000px;
     padding: 20px 15px;
 }
-  .heading-wrapper
-  {
+
+.heading-wrapper {
     display: flex;
     justify-content: space-between;
     margin: 20px;
     align-items: center;
-  }
+}
+
 .tableContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .doctorTableList {
     width: 400px;
     padding: 0;
 }
+
 .patientTableList {
     width: 800px;
     padding: 0;
 }
-.doctorTableList li, .patientTableList li {
-      border-radius: 3px;
-      padding: 10px;
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 10px;
-    }
+
+.doctorTableList li,
+.patientTableList li {
+    border-radius: 3px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
 .table-header {
     background-color: #3fbbc0;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-  }
-  .table-row {
+}
+
+.table-row {
     background-color: #ffffff;
-    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-  }
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
 .sno {
     width: 30px;
 }
+
 .docName {
     width: 100px;
 }
+
 .status {
     width: 180px;
 }
 
 .col-1 {
     flex-basis: 5%;
-  }
-  .col-2 {
+}
+
+.col-2 {
     flex-basis: 15%;
-  }
-  .col-3 {
+}
+
+.col-3 {
     flex-basis: 25%;
-  }
-  .col-4 {
+}
+
+.col-4 {
     flex-basis: 15%;
-  }
-  .col-5 {
+}
+
+.col-5 {
     flex-basis: 15%;
-  }
-  .col-6 {
+}
+
+.col-6 {
     flex-basis: 5%;
-  }
+}
+
 .addDocCont {
     background-color: white;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 10px #bbb;
 }
+
 .form-group {
     margin: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: start;
 }
+
 .form-group label {
     margin-bottom: 5px;
 }
+
 .form-group button {
     margin-top: 20px;
     width: 100%;
 }
+
 .formCont {
     display: flex;
 }
-.labFormCont {    
+
+.labFormCont {
     display: flex;
     flex-direction: column;
 }
-.leftForm, .rightForm {
+
+.leftForm,
+.rightForm {
     margin: 0 20px;
     width: 250px;
 }
+
 .patientBtnCont {
     display: flex;
 }
+
 .patientBtns {
     color: #fff;
     background-color: #3fbbc0;
@@ -1027,20 +1359,24 @@ span {
     /* transition: color 0.5s; */
     transition: background-color 0.5s;
 }
+
 .patientBtns:hover:not(.disable) {
     border: solid 2px #3fbbc0;
     background-color: #fff;
     color: #3fbbc0;
 }
+
 .disable {
     background-color: #bbb;
     cursor: not-allowed;
 }
+
 .medTable th {
     background-color: #3fbbc0;
     color: #fff;
     text-align: center;
 }
+
 .medCont {
     position: fixed;
     display: none;
@@ -1055,6 +1391,7 @@ span {
     z-index: 99999;
     transition: all 0.3s;
 }
+
 .medCard {
     position: relative;
     background-color: #fff;
@@ -1063,6 +1400,7 @@ span {
     display: flex;
     flex-direction: column;
 }
+
 .closeMed {
     position: absolute;
     top: 10px;
@@ -1070,23 +1408,28 @@ span {
     transition: font-weight 0.5s;
     transition: color 0.3s;
 }
+
 .closeMed:hover {
     cursor: pointer;
     color: red;
     font-weight: bold;
 }
+
 .medTable {
     width: 400px;
     background-color: #fff;
     box-shadow: 0 0 10px #ddd;
 }
+
 .medName {
     border: none;
     width: 100%;
 }
+
 .medTable td {
     text-align: center;
 }
+
 .removeMed {
     color: #fff;
     background-color: #f00;
@@ -1098,10 +1441,12 @@ span {
     border-radius: 20px;
     font-weight: 1000;
 }
+
 .medBtnCont {
     display: flex;
     justify-content: center;
 }
+
 .medBtn {
     background-color: #40BBC0;
     border: none;
@@ -1110,14 +1455,17 @@ span {
     padding: 5px 20px;
     margin: 0 10px;
 }
+
 #saveMed {
     display: none;
 }
+
 .dropdownCont {
     margin: 30px 0;
     width: 100%;
     position: relative;
 }
+
 .dropbtnInpCcontainer {
     min-height: 60px;
     display: flex;
@@ -1128,6 +1476,7 @@ span {
     width: 400px;
     box-sizing: border-box;
 }
+
 .selectedOpts {
     display: none;
     /* cursor: pointer; */
@@ -1138,7 +1487,7 @@ span {
     position: absolute;
     background-color: #f9f9f9;
     width: fit-content;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     width: 100%;
 }
@@ -1157,10 +1506,12 @@ span {
 .dropdownCont:hover .dropdownOpt {
     display: block;
 }
+
 .selected-items {
     display: flex;
     flex-wrap: wrap;
 }
+
 .selected-item {
     padding: 4px 8px;
     background-color: #e0e0e0;
