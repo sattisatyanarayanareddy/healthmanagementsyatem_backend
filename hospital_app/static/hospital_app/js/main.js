@@ -20,97 +20,25 @@ function closeForm() {
   document.querySelector('.bookDoctorCont').style.display = 'none';
   document.querySelector('body').style.overflow = 'auto';
 }
-(function() {
-  "use strict";
-
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
-  }
-
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
-
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('#navbar').classList.toggle('navbar-mobile')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
-  });
-
-  /**
-   * Initiate glightbox 
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  /**
-   * Back to top button
-   */
-   let backtotop = select('.back-to-top')
-   if (backtotop) {
-     const toggleBacktotop = () => {
-       if (window.scrollY > 100) {
-         backtotop.classList.add('active')
-       } else {
-         backtotop.classList.remove('active')
-       }
-     }
-     window.addEventListener('load', toggleBacktotop)
-     onscroll(document, toggleBacktotop)
-   }
-
-})()
 
 function validateForm() {
-  var pname = document.forms["myForm"]["pname"].value;
-  var passwd = document.forms["myForm"]["passwd"].value;
-  var emergencyDropdown = document.forms["myForm"]["emergency_dropdown"].value;
+  var name = document.forms["myForm"]["emgUsername"].value;
+  var phno = document.forms["myForm"]["emgPhno"].value;
+  var dropDown = document.forms["myForm"]["emgDropdown"].value;
+
+  console.log(document.getElementById("emgUsername").autofocus);
   
-  if (pname.length <= 3) {
+  if (name.length <= 3) {
       alert("Username must be more than 3 letters");
       return false;
   }
   
-  if (passwd.length < 6) {
+  if (phno.length < 6) {
       alert("Password must be at least 6 characters");
       return false;
   }
   
-  if (emergencyDropdown === "Null") {
+  if (dropDown === "Null") {
       alert("Please select a specialization");
       return false;
   }

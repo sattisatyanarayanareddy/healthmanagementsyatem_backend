@@ -139,9 +139,13 @@ body {
 }
 .docProfile img {
     width: 100px;
+    height: 100px;
     border-radius: 50px;
     margin-bottom: 5px;
     transition: margin 0.6s;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .docDetails {
     text-align: center;
@@ -292,6 +296,9 @@ span {
     text-align: center;
     margin-bottom: 30px;
 }
+#appointment h2 {
+    margin-top: 30px;
+}
 #appointmentForm {
     width: 400px;
     position: relative;
@@ -381,6 +388,39 @@ span {
 }
 .historySubPage .visible {
     visibility: visible;
+}
+.testCont {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.tests {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 120px;
+    margin: 0 5px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.testImg {
+    top: 120px;
+    position: absolute;
+    height: 100%;
+    transition: top 0.5s;
+}
+.testBtn {
+    height: 35px;
+    border: solid 2px #3fbbc0;
+    border-radius: 20px;
+    color: #3fbbc0;
+    background-color: #fff;
+    padding: 0 20px;
+}
+.testBtn:hover ~ .testImg, .testImg:hover {
+    top: 0px;
 }
 .reportCardList {
     margin-top: 30px;

@@ -114,12 +114,10 @@
           <div class="history">
             <li><a class="nav-link scrollto" data-section="appointment" href="#appointment">History</a></li>
             <div class="historyCont">
-              <a data-section="appointment" data-id="previous" class="historyLink">Previous Appointments</a>
               <a data-section="appointment" data-id="reports" class="historyLink">Reports</a>
               <a data-section="appointment" data-id="prescp" class="historyLink">Prescriptions</a>
             </div>
           </div>
-          <li><a class="nav-link scrollto" data-section="checkup" href="#checkup">Master Health Checkup</a></li>       
           <li><a class="nav-link scrollto" data-section="payment" href="#payment">Payments</a></li>
           <li><button type="button" class="logout" id="patientLogout" onclick="logout()">Log out</button></li>
         </ul>
@@ -310,178 +308,34 @@
   </div>
 
 <div class="content" id="appointment">
-  <div class="historySubPage visible" id="previous">
-    <div class="invoiceCont">
-      <div class="invoiceCard">
-			<button class="closeBtn" onclick="closeInvoice('.invoiceCont')">&#x2715;</button>
-      <h3>Invoice</h3>
-        <div class="details">
-          <div class="patientDetails">
-            <div class="patientData">
-              <label for="invoicePname">Name:</label>
-              <input type="text" name="invoicePname" id="invoicePname" readonly>
-            </div>
-            <div class="patientData">
-              <label for="invoicePage">Age:</label>
-              <input type="text" name="invoicePage" id="invoicePage" readonly>
-            </div>
-            <div class="patientData">
-              <label for="invoicePsex">Sex:</label>
-              <input type="text" name="invoicePsex" id="invoicePsex" readonly>
-            </div>
-            <div class="patientData">
-              <label for="invoicePdate">Date:</label>
-              <input type="text" name="invoicePdate" id="invoicePdate" readonly>
-            </div>
-            <div class="patientData">
-              <label for="invoicePtime">Time:</label>
-              <input type="text" name="invoicePtime" id="invoicePtime" readonly>
-            </div>
-          </div>
-          <div class="hospitalDetails">
-            <div class="docData">
-              <label for="invoiceDname">Doctor Name:</label>
-              <input type="text" name="invoiceDname" id="invoiceDname" readonly>
-            </div>
-            <div class="docData">
-              <label for="invoiceSpeciality">Speciality:</label>
-              <input type="text" name="invoiceSpeciality" id="invoiceSpeciality" readonly>
-            </div>
-            <div class="billAmount">
-              Bill Amount: &#8377;
-              <input type="number" name="invoiceBillamount" id="invoiceBillamount" oninput="convertToWords(this.value)">
-            </div>
-            <div class="amountWords">
-              Amount in words: <br>&#8377;
-              <input type="text" name="invoiceAmount" id="invoiceAmount" readonly>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="billTable">
-          <!-- <h5>Bill Description</h5> -->
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>S.No.</th>
-                <th>Service Name</th>
-                <th>Department</th>
-                <th>Amount (INR)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Doctor Consultation</td>
-                <td>Medical</td>
-                <td>900.00</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Liver Function Test</td>
-                <td>BioChemistry</td>
-                <td>2,700.00</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Patient Registration</td>
-                <td>Registration</td>
-                <td>250.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="historySubPage visible" id="reports">
+    <h2>Tests Included</h2>
+    <div class="testCont">
+      <div class="tests">
+        <button class="testBtn">Blood Tests</button>
+        <img src="https://images.theconversation.com/files/177464/original/file-20170710-5553-yu4kic.jpg" alt="bloodtest" class="testImg">
+      </div>
+      <div class="tests">
+        <button class="testBtn">MRI Scan</button>
+        <img src="https://www.sciencefriday.com/wp-content/uploads/2023/10/MRI-scan-1.jpg" alt="mriscan" class="testImg">
+      </div>
+      <div class="tests">
+        <button class="testBtn">X-ray Scan</button>
+        <img src="https://zenapp.s3.ap-south-1.amazonaws.com/zen/blogs/X-Ray-Header-Header-1030x687.jpg" alt="xray" class="testImg">
+      </div>
+      <div class="tests">
+        <button class="testBtn">Diabetes</button>
+        <img src="https://www.southcoasthealth.com/assets/upload/a7c59a87-117c-407f-8c47-2718ff76baa4/doctor-testing-blood-sugar-for-diabetes.jpg" alt="diabetes" class="testImg">
+      </div>
+      <div class="tests">
+        <button class="testBtn">BP Test</button>
+        <img src="https://www.annapharmacy.com/wp-content/uploads/2022/03/blood-pressure1.jpg" alt="bp" class="testImg">
+      </div>
+      <div class="tests">
+        <button class="testBtn">ECG Test</button>
+        <img src="https://avitahealth.in/wp-content/uploads/2023/12/Benefits-of-ECG-Test-at-Home-Feature-Image.png" alt="ecg" class="testImg">
       </div>
     </div>
-    <div class="prevAppCont">
-      <div class="prevAppCard">
-        <button class="closeBtn" onclick="closeAppointment()">&#x2715;</button>
-        <div class="prevAppData">
-          <label for="dname">Doctor Name:</label>
-          <input type="text" id="dname" name="dname" readonly>
-        </div>
-        <div class="prevAppData">
-          <label for="docSpecial">Doctor Specialzation:</label>
-          <input type="text" id="docSpecial" name="docSpecial" readonly>
-        </div>
-        <div class="prevAppData">
-          <label for="symptoms">Symptoms:</label>
-          <input type="text" id="symptoms" name="symptoms" readonly>
-        </div>
-        <div class="prevAppData">
-          <label for="indate">In Date:</label>
-          <input type="date" name="indate" id="indate" readonly>
-        </div>
-        <div class="prevAppData">
-          <label for="outdate">Out Date:</label>
-          <input type="date" name="outdate" id="outdate" readonly>
-        </div>
-        <div class="prevAppData">
-          <label for="viewReports">Reports:</label>
-          <button id="viewReports" onclick="viewRow()">View</button>
-        </div>
-        <div class="prevAppData">
-          <label for="viewInvoice">Invoice:</label>
-          <button id="viewInvoice" onclick="viewInvoice('.invoiceCont')">View</button>
-        </div>
-      </div>
-    </div>
-    <h1>Previous Appointments</h1>
-    <div class="search-container">
-        <input type="text" id="prevSearchInput" placeholder="Search by date, time, or name..." onkeyup="filterAppointments(id, 'prevAppointmentContainer')">
-    </div>
-    <div class="appointment-container" id="prevAppointmentContainer">
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr: Raju</h2>
-          <p>Date: 2023-05-10</p>
-          <p>Time: 14:30</p>
-          <p>Dr. KaliDas</p>
-        </div>
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  Ravi</h2>
-          <p>Date: 2023-06-15</p>
-          <p>Time: 11:00</p>
-          <p>Name: Jayamma</p>
-        </div>
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  Lee</h2>
-          <p>Date: 2023-07-01</p>
-          <p>Time: 09:45</p>
-          <p>Dr.Bintu</p>
-        </div>
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  HAHAha</h2>
-          <p>Date: 2023-07-01</p>
-          <p>Time: 09:45</p>
-          <p>Dr.Baby</p>
-        </div>
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  Sunny </h2>
-          <p>Date: 2023-07-01</p>
-          <p>Time: 09:45</p>
-          <p>Dr.Vicky</p>
-        </div>
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  Jonny</h2>
-          <p>Date: 2023-07-01</p>
-          <p>Time: 09:45</p>
-          <p>Name: Keerthana</p>
-        </div>
-          <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  Lee</h2>
-          <p>Date: 2023-07-01</p>
-          <p>Time: 09:45</p>
-          <p>Dr. Charitha</p>
-        </div>
-        <div class="appointment-card" onclick="openAppointment(this)">
-          <h2>Dr:  Lee</h2>
-          <p>Date: 2023-07-01</p>
-          <p>Time: 09:45</p>
-          <p>Name: Michael Brown</p>
-        </div>
-    </div>
-  </div>
-  <div class="historySubPage" id="reports">
     <h1>Reports</h1>
     <div class="reportCardList">
       <div class="reportCard">
@@ -690,43 +544,8 @@
   </div>
 </div>
 
-<div class="content" id="checkup">
-    <section class="testIncl">
-        <h2>Tests Included</h2>
-        <ul class="tests">
-            <li>Blood Tests</li>
-            <li>Urinalysis</li>
-            <li>X-ray</li>
-            <li>ECG</li>
-            <li>Ultrasound</li>
-        </ul>
-        <button class="checkBtn" onclick="checkHealthActivity()">HealthActivity</button>
-    </section>
-    <section id="bookApp">
-      <form id="appointmentForm" onsubmit="return validateForm()">
-          <h2>Book an Appointment</h2>
-            <label for="name_">Name: </label>
-            <input type="text" id="name_" name="name" required><br><br>
-            
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email" required><br><br>
-            
-            <label for="phone">Phone: </label>
-            <input type="tel" id="phone" name="phone" required><br><br>
-            
-            <label for="date">Preferred Date: </label>
-            <input type="date" id="date" name="date" required><br><br>
-            
-            <label for="checkTime">Preferred Time: </label>
-            <input type="time" id="checkTime" name="checkTime" required><br><br>
-            
-            <button type="submit" class="bookBtn">Book Appointment</button>
-        </form>
-    </section>
-</div>
-
 <div class="content" id="payment">
-    
+
     <section id="ready-to-pay">
         <h2>Ready to Pay</h2>
         <table class="table table-bordered border-info">
@@ -740,13 +559,13 @@
             </thead>
             <tbody>
               {% for bill in data_bill %}
-          <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{bill.date}}</td>
-            <td class="amount">{{bill.bill}}</td>
-            <td><button class="payBtn" onclick="payNow(this)">Pay Now</button></td>
-          </tr>
-          {% endfor %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{bill.date}}</td>
+                <td class="amount">{{bill.bill}}</td>
+                <td><button class="payBtn" onclick="payNow(this)">Pay Now</button></td>
+              </tr>
+              {% endfor %}
             </tbody>
         </table>
     </section>
