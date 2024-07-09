@@ -976,6 +976,7 @@ span {
     60%{background-position:0%  50%, 50% 100%,100%   0%}
     80%{background-position:0%  50%, 50%  50%,100% 100%}
 }
+<<<<<<< HEAD
 
 .dropdownCont {
     margin:10px 0;
@@ -1060,4 +1061,28 @@ span {
     cursor: pointer;
     color: #aaa;
     font-weight: bold;
+=======
+.appBooked {
+    border: none;
+    color: #fff;
+    background-color: #0f0;
+    border-radius: 20px;
+    width: 110px;
+    text-align: center;
+}
+.appBooked:hover {
+    cursor: auto;
+}
+.appResch {
+    border: none;
+    color: #fff;
+    background-color: #f00;
+    border-radius: 20px;
+    width: 110px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+.appResch:hover {
+    background-color: #c00;
+>>>>>>> 4d206a21ff63ba486e074d338a9890a0c387765a
 }
