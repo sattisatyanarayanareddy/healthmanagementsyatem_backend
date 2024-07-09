@@ -976,92 +976,6 @@ span {
     60%{background-position:0%  50%, 50% 100%,100%   0%}
     80%{background-position:0%  50%, 50%  50%,100% 100%}
 }
-<<<<<<< HEAD
-
-.dropdownCont {
-    margin:10px 0;
-    width: 100%;
-    position: relative;
-}
-
-.dropbtnInpContainer {
-    height: 56px;
-    width: 220px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-    cursor: pointer;
-    overflow-y: scroll;
-    box-sizing: border-box;
-}
-.dropbtnOptContainer {
-    width: 220px;
-    height: 35px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-    box-sizing: border-box;
-}
-.dropbtnInpContainer::-webkit-scrollbar {
-    width: 8px;
-    background-color: #F5F5F5;
-    display: block !important;
-}
-.dropbtnInpContainer::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #F5F5F5;
-}
-.dropbtnInpContainer::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #3fbbc0;
-}
-.selectedOpts {
-    display: none;
-    /* cursor: pointer; */
-}
-
-.dropdownOpt {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    width: 100%;
-}
-
-.dropdownOpt .dropdown-item {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdownOpt .dropdown-item:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdownCont:hover .dropdownOpt {
-    display: block;
-}
-
-.selected-items {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.selected-item {
-    padding: 2px 4px;
-    background-color: #e0e0e0;
-    margin: 2px;
-    border-radius: 4px;
-}
-
-.selected-item .remove-btn {
-    margin-left: 8px;
-    cursor: pointer;
-    color: #aaa;
-    font-weight: bold;
-=======
 .appBooked {
     border: none;
     color: #fff;
@@ -1084,5 +998,4 @@ span {
 }
 .appResch:hover {
     background-color: #c00;
->>>>>>> 4d206a21ff63ba486e074d338a9890a0c387765a
 }

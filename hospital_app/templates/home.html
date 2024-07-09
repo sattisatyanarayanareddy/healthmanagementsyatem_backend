@@ -224,7 +224,7 @@
                   {% if {{data.status}} == true %}
                     Booked
                   {% else %}
-                    Reschedule
+                    Rescheduled
                   {% endif %}
                 </button></td>
              </tr>
@@ -871,13 +871,25 @@
       }
       window.onload = function() {
       // Check if the page has already been refreshed
-      if (!sessionStorage.getItem('refreshed')) {
-        // Set the flag in session storage
-        sessionStorage.setItem('refreshed', 'true');
-        // Reload the page
-        location.reload();
+        if (!sessionStorage.getItem('refreshed')) {
+          // Set the flag in session storage
+          sessionStorage.setItem('refreshed', 'true');
+          // Reload the page
+          location.reload();
+        }
+      };
+
+      const appStatusClass = document.querySelector('.appStatus');
+      const appStatus = appStatusClass.innerText.trim();
+      console.log(appStatus);
+      if (appStatus === 'Booked') {
+          appStatusClass.classList.add('appBooked');
+      } else if (appStatus === 'Rescheduled') {
+          appStatusClass.classList.add('appResch');
+      } else {
+          appStatusClass.classList.add('view');
       }
-    };
+
     </script>
 
   </body>
