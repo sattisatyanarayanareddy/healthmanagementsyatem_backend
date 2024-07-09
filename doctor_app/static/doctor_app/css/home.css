@@ -787,7 +787,7 @@ span {
     width: fit-content;
     height: 295px;
     border: 1px solid #ddd;
-    margin-right: 30px;
+    margin-right: 80px;
 }
 
 .tableCont::-webkit-scrollbar-track {
@@ -882,7 +882,7 @@ span {
 .alertCard {
     background-color: #fff;
     box-shadow: 0 0 10px #bbb;
-    width: 300px;
+    width: 350px;
     padding: 20px;
     border-radius: 20px;
     margin-bottom: 20px;

@@ -282,8 +282,9 @@ function closeMedCont(className) {
 }
 
 function removeMed(btn) {
-    const td = btn.parentNode.parentNode;
-    td.style.display = 'none'
+    const tr = btn.parentNode.parentNode;
+    const tbody = document.getElementById('tbody');
+    tbody.removeChild(tr)
 }
 
 function addMed() {
@@ -365,6 +366,7 @@ function saveMedData() {
             sum += checkbox.checked;
         }
         if (medName !== "" && sum !== 0) {
+            console.log(medName);
             medData[medName] = checkboxValues;
         } else {
             alert('Please fill all the Fields..!');

@@ -138,7 +138,7 @@
         <div class="registration-form">
           <h2>Appointment Form</h2>
           <form action="{% url 'patient_appointment' %}?id={{id}}" id="registration" method="post" class="regForm">
-          {% csrf_token %}
+          <!-- {% csrf_token %} --> 
             <div>
               <label for="name">Name:</label>
               <input type="text" id="name" name="name" required>
@@ -157,28 +157,28 @@
               <input type="number" id="weight" name="weight" required>
             </div>
             <div>
-              <label for="concern"> Health Concerns: </label>
-              <select id="concern" name="concern" required>
-                      <option value="">Select Health Concerns</option>
-                      <option value="Fever">Fever</option>
-                      <option value="Cough">Cough</option>
-                      <option value="Sore Throat">Sore Throat</option>
-                      <option value="Shortness of Breath">Shortness of breath</option>
-                      <option value="Chest Pain">Chest Pain</option>
-                      <option value="Fatigue">Fatigue</option>
-                      <option value="Headache">Headache</option>
-                      <option value="Body Aches">Body Aches</option>
-                      <option value="Nausea or Vomiting">Nausea or Vomiting</option>
-                      <option value="Diarrhea">Diarrhea</option>
-                      <option value="Abdominal Pain">Abdominal Pain</option>
-                      <option value="Joint Pain">Joint Pain</option>
-                      <option value="Rash">Rash</option>
-                      <option value="Skin Itch">Skin Rash</option>
-              </select>
+              <label for="concern"> Health Concerns: </label>  
+              <div class="dropdownCont">
+                <div class="dropbtnInpContainer">
+                   <div class="selected-items" id="selected-symptoms"></div>
+                   <input type="text" name="concern" class="selectedOpts">
+                </div>
+                <div class="dropdownOpt">
+                    <a href="#" class="dropdown-item">fever</a>
+                    <a href="#" class="dropdown-item">cough</a>
+                    <a href="#" class="dropdown-item">headache</a>
+                    <a href="#" class="dropdown-item">diarrhea</a>
+                    <a href="#" class="dropdown-item">breathing</a>
+                    <a href="#" class="dropdown-item">joint pain</a>
+                    <a href="#" class="dropdown-item">skin rashs</a>
+                </div>
+             </div>
+             <label for="specialization"> Specialization: </label>
+             <select name="specialization" id="specialization" required>
+              <option>Select the Specialization</option>
+             </select>
               <label for="doctorName"> Doctor: </label>
               <input type="text" id="doctorName" name="doctor" value="" >
-              <label for="specialization"> Specialization: </label>
-              <input type="text" id="specilization" name="specialization" >
               <label for="appDate">Date:</label>
               <input type="date" id="appDate" name="date" required>
               <label for="time">Time:</label>
@@ -817,176 +817,178 @@
   <script src="{% static 'hospital_app/js/script.js' %}"></script>
   
     <script>
+
+      
       document.getElementById('send-button').addEventListener('click', sendMessage);
-document.getElementById('user-input').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-});
+      document.getElementById('user-input').addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') {
+              sendMessage();
+          }
+      });
 
       const chatOutput = document.getElementById('chat-output');
 
-const botResponses = {
-    "hello": [
-        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Payments",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7. Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "1": [
-        "Checkout the dashboard and you can book your appointment"
-    ],
-    "2": [
-        "Go to the Dashboard and check out the master health checkup, there you can find appointment booking related to your master health checkup"
-    ],
-    "4": [
-        "Visit Dashboard and you can proceed your payments in online, offline and you can view your transaction bills history"
-    ],
-    "5": [
-        "You can consult our Specialized doctors",
-        "1.Dr.Venkat - Radiologist",
-        "2.Dr.Vicky - Neurologist",
-        "3.Dr.Nagendra - Anesthesiologist",
-        "4.Dr.Ravi - Ophthalmologist",
-        "5.Dr.Dev - General Surgeon",
-        "6.Dr.Uzma - Dermatologist",
-        "7.Dr.Durga - Orthopedic surgeon",
-        "8.Dr.Jagannadh - ENT",
-        "9.Dr.Sathya - Oncologist",
-        "10.Dr.Rahul - Sports Medicine Physician",
-        "11.Dr.Manoj - Nutritionist",
-        "12.Dr.Raj - Pulmonologist"
-    ],
-    "3": [
-        "Our Services:",
-        "Regular Checkup",
-        "Medicine",
-        "Diagnostic Services",
-        "Blood Test",
-        "Disabled Person",
-        "Health check packages"
-    ],
-    "6": "Visit the Dashboard and click on history there you can find Prescriptions",
-    "7": "You can checkout your reports on Dashboard",
-    "how are you?": "I am just a bot and I have no feelings, what about you?",
-    "fine": "That's great to hear",
-    "bye": [
-        "Goodbye! Have a great day and stay Healthy!"
-    ],
-    "hi": [
-        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "hey": [
-        "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "hii": [
-        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "helloo": [
-        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ],
-    "hie": [
-        "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
-        "1. Book Appointment",
-        "2. Master Health Checkup",
-        "3. Services",
-        "4. Patient Records",
-        "5. Consult Doctors",
-        "6. Prescriptions",
-        "7.Reports",
-        "Press numbers between 1-7 to know more info"
-    ]
-};
+      const botResponses = {
+          "hello": [
+              "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+              "1. Book Appointment",
+              "2. Master Health Checkup",
+              "3. Services",
+              "4. Payments",
+              "5. Consult Doctors",
+              "6. Prescriptions",
+              "7. Reports",
+              "Press numbers between 1-7 to know more info"
+          ],
+          "1": [
+              "Checkout the dashboard and you can book your appointment"
+          ],
+          "2": [
+              "Go to the Dashboard and check out the master health checkup, there you can find appointment booking related to your master health checkup"
+          ],
+          "4": [
+              "Visit Dashboard and you can proceed your payments in online, offline and you can view your transaction bills history"
+          ],
+          "5": [
+              "You can consult our Specialized doctors",
+              "1.Dr.Venkat - Radiologist",
+              "2.Dr.Vicky - Neurologist",
+              "3.Dr.Nagendra - Anesthesiologist",
+              "4.Dr.Ravi - Ophthalmologist",
+              "5.Dr.Dev - General Surgeon",
+              "6.Dr.Uzma - Dermatologist",
+              "7.Dr.Durga - Orthopedic surgeon",
+              "8.Dr.Jagannadh - ENT",
+              "9.Dr.Sathya - Oncologist",
+              "10.Dr.Rahul - Sports Medicine Physician",
+              "11.Dr.Manoj - Nutritionist",
+              "12.Dr.Raj - Pulmonologist"
+          ],
+          "3": [
+              "Our Services:",
+              "Regular Checkup",
+              "Medicine",
+              "Diagnostic Services",
+              "Blood Test",
+              "Disabled Person",
+              "Health check packages"
+          ],
+          "6": "Visit the Dashboard and click on history there you can find Prescriptions",
+          "7": "You can checkout your reports on Dashboard",
+          "how are you?": "I am just a bot and I have no feelings, what about you?",
+          "fine": "That's great to hear",
+          "bye": [
+              "Goodbye! Have a great day and stay Healthy!"
+          ],
+          "hi": [
+              "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+              "1. Book Appointment",
+              "2. Master Health Checkup",
+              "3. Services",
+              "4. Patient Records",
+              "5. Consult Doctors",
+              "6. Prescriptions",
+              "7.Reports",
+              "Press numbers between 1-7 to know more info"
+          ],
+          "hey": [
+              "Hello! I'm Veronica ,I'm here to assist you, What are you looking for?",
+              "1. Book Appointment",
+              "2. Master Health Checkup",
+              "3. Services",
+              "4. Patient Records",
+              "5. Consult Doctors",
+              "6. Prescriptions",
+              "7.Reports",
+              "Press numbers between 1-7 to know more info"
+          ],
+          "hii": [
+              "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+              "1. Book Appointment",
+              "2. Master Health Checkup",
+              "3. Services",
+              "4. Patient Records",
+              "5. Consult Doctors",
+              "6. Prescriptions",
+              "7.Reports",
+              "Press numbers between 1-7 to know more info"
+          ],
+          "helloo": [
+              "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+              "1. Book Appointment",
+              "2. Master Health Checkup",
+              "3. Services",
+              "4. Patient Records",
+              "5. Consult Doctors",
+              "6. Prescriptions",
+              "7.Reports",
+              "Press numbers between 1-7 to know more info"
+          ],
+          "hie": [
+              "Hello! I'm Veronica,I'm here to assist you, What are you looking for?",
+              "1. Book Appointment",
+              "2. Master Health Checkup",
+              "3. Services",
+              "4. Patient Records",
+              "5. Consult Doctors",
+              "6. Prescriptions",
+              "7.Reports",
+              "Press numbers between 1-7 to know more info"
+          ]
+      };
 
-function sendMessage() {
-    const userInput = document.getElementById('user-input').value.trim().toLowerCase();
-    const chatOutput = document.getElementById('chat-output');
-    
-    const loadCont = document.createElement('div');
-    loadCont.classList.add('loadCont');
-    const loadAnimation = document.createElement('div');
-    loadAnimation.classList.add('repLoader');
-    loadCont.appendChild(loadAnimation);
+      function sendMessage() {
+          const userInput = document.getElementById('user-input').value.trim().toLowerCase();
+          const chatOutput = document.getElementById('chat-output');
+          
+          const loadCont = document.createElement('div');
+          loadCont.classList.add('loadCont');
+          const loadAnimation = document.createElement('div');
+          loadAnimation.classList.add('repLoader');
+          loadCont.appendChild(loadAnimation);
 
-    if (userInput !== '') {
-        appendMessage(userInput, 'user');
-        chatOutput.appendChild(loadCont);
-        document.getElementById('user-input').value = '';
-        setTimeout(() => {
-            chatOutput.removeChild(loadCont);
-            const botResponse = getBotResponse(userInput);
-            appendMessage(botResponse, 'bot');
-        }, 4000);
-    }
-}
+          if (userInput !== '') {
+              appendMessage(userInput, 'user');
+              chatOutput.appendChild(loadCont);
+              document.getElementById('user-input').value = '';
+              setTimeout(() => {
+                  chatOutput.removeChild(loadCont);
+                  const botResponse = getBotResponse(userInput);
+                  appendMessage(botResponse, 'bot');
+              }, 4000);
+          }
+      }
 
-function appendMessage(message, sender) {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message', `${sender}-message`);
+      function appendMessage(message, sender) {
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('message', `${sender}-message`);
 
-    if (Array.isArray(message)) {
-        const listElement = document.createElement('ul');
-        message.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = item;
-            listElement.appendChild(listItem);
-        });
-        messageElement.appendChild(listElement);
-    } else {
-        messageElement.textContent = message;
-    }
+          if (Array.isArray(message)) {
+              const listElement = document.createElement('ul');
+              message.forEach(item => {
+                  const listItem = document.createElement('li');
+                  listItem.textContent = item;
+                  listElement.appendChild(listItem);
+              });
+              messageElement.appendChild(listElement);
+          } else {
+              messageElement.textContent = message;
+          }
 
-    chatOutput.appendChild(messageElement);
-    chatOutput.scrollTop = chatOutput.scrollHeight;
-    
-    messageElement.scrollIntoView({ behavior: 'smooth' });
-}
+          chatOutput.appendChild(messageElement);
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+          
+          messageElement.scrollIntoView({ behavior: 'smooth' });
+      }
 
-function getBotResponse(userInput) {
-    return botResponses[userInput] || ["I'm sorry, I don't understand that."];
-}
+      function getBotResponse(userInput) {
+          return botResponses[userInput] || ["I'm sorry, I don't understand that."];
+      }
 
-function toggleChatbot() {
-    const chatbotPopup = document.getElementById('chatbot-popup');
-    chatbotPopup.classList.toggle('hidden');
-}
+      function toggleChatbot() {
+          const chatbotPopup = document.getElementById('chatbot-popup');
+          chatbotPopup.classList.toggle('hidden');
+      }
       function logout(){
           const logoutUrl = document.getElementById('logout-url').value;
           window.location.href = logoutUrl;

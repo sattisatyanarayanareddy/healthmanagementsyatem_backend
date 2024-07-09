@@ -13,7 +13,7 @@
       rel="stylesheet" />
       {% load static %}
    <!-- Vendor CSS Files -->
-   <!-- <link rel="stylesheet" href="../static/doctor_app/vendor/animate.css/animate.min.css"/>
+   <link rel="stylesheet" href="../static/doctor_app/vendor/animate.css/animate.min.css"/>
    <link rel="stylesheet" href="../static/doctor_app/vendor/bootstrap/css/bootstrap.min.css"/>
    <link rel="stylesheet" href="../static/doctor_app/vendor/bootstrap-icons/bootstrap-icons.css"/>
    <link rel="stylesheet" href="../static/doctor_app/vendor/boxicons/css/boxicons.min.css"/>
@@ -24,7 +24,7 @@
    <link rel="stylesheet" href="../static/doctor_app/css/evo-calendar.min.css" >
    <link rel="stylesheet" href="../static/doctor_app/css/evo-calendar.midnight-blue.min.css" >
    <link rel="stylesheet" href="../static/doctor_app/css/home.css"/>
-   <link rel="stylesheet" href="../static/doctor_app/css/style.css"/> -->
+   <link rel="stylesheet" href="../static/doctor_app/css/style.css"/>
 
    <link href="{% static 'doctor_app/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
    <link href="{% static 'doctor_app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
@@ -51,13 +51,11 @@
    <header id="header" class="sticky-top d-flex px-5 align-items-center">
   
       <h1 class="logo me-auto">
-         <a href="index.html">
            <img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1720031430/careplus_jl8edu.png" alt="">
            <div class="logoTitle">
              <p>CARE PLUS</p>
              <p class="caption">Enhancing Life, Ensuring Care</p>
            </div>
-         </a>
        </h1>
       <nav id="navbar" class="navbar order-last order-lg-0">
          <ul>
@@ -157,13 +155,12 @@
                      <p>{{alert.mobile}}</p>
                   </div>
                   <div class="alertCardData">
-                     <label>Action:</label>
-                     <div>
-                        <button class="acptBtn" id="acptBtn" onclick="accept(this)">Accept</button>
-                        <div class="acptLoadCont">
-                           <div class="acceptLoader"></div>
-                        </div>
-                     </div>
+                     <label>Specialization:</label>
+                     <p>{{alert.specialization}}</p>
+                  </div>
+                  <div class="alertCardData">
+                     <label>Date:</label>
+                     <p>{{alert.date}}</p>
                   </div>
                </div>
                {% endfor %}
@@ -235,13 +232,13 @@
 
    <input type="hidden" id="logout-url" value="{% url 'doctor_logout_fun' %}">
 
-   <!-- <script src="../static/doctor_app/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../static/doctor_app/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
    <script src="../static/doctor_app/vendor/glightbox/js/glightbox.min.js"></script>
    <script src="../static/doctor_app/vendor/purecounter/purecounter.js"></script>
    <script src="../static/doctor_app/vendor/swiper/swiper-bundle.min.js"></script>
    <script src="../static/doctor_app/js/evo-calendar.min.js"></script>
    <script src="../static/doctor_app/js/script.js"></script>
-   <script src="../static/doctor_app/js/calendar.js"></script> -->
+   <script src="../static/doctor_app/js/calendar.js"></script>
 
     <script src="{% static 'doctor_app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'doctor_app/vendor/glightbox/js/glightbox.min.js' %}"></script>

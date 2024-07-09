@@ -122,4 +122,94 @@ document.getElementById('user-input').addEventListener('keypress', function (e) 
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const selectedItemsContainer = document.querySelector('#selected-symptoms');
+    const dropbtn = document.querySelector('.dropbtn');
+
+    const specialistDropdownContent = document.querySelector('#specialist-dropdown-content');
+    const selectedSpecialistsContainer = document.querySelector('#selected-specialists');
+    const specialistDropbtn = document.querySelectorAll('.dropbtn')[1];
+
+    const symptomToSpecialists = {
+        'fever': ['General Practitioner', 'Infectious Disease Specialist'],
+        'cough': ['Pulmonologist', 'General Practitioner'],
+        'sore throat': ['ENT Specialist', 'General Practitioner'],
+        'shortness of breath': ['Pulmonologist', 'Cardiologist'],
+        'chest pain': ['Cardiologist', 'Pulmonologist'],
+        'fatigue': ['General Practitioner', 'Endocrinologist'],
+        'headache': ['Neurologist', 'General Practitioner'],
+        'body aches': ['Rheumatologist', 'General Practitioner'],
+        'nausea or vomiting': ['Gastroenterologist', 'General Practitioner'],
+        'diarrhea': ['Gastroenterologist', 'General Practitioner'],
+        'abdominal pain': ['Gastroenterologist', 'General Practitioner'],
+        'joint pain': ['Rheumatologist', 'Orthopedic Specialist'],
+        'skin rash': ['Dermatologist', 'Allergist']
+    };
+
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            addSelectedItem(item);
+        });
+    });
+
+    function addSelectedItem(item) {
+        const selectedItem = document.createElement('div');
+        selectedItem.classList.add('selected-item');
+
+        const itemLabel = document.createElement('span');
+        itemLabel.textContent = item.textContent;
+
+        const removeBtn = document.createElement('span');
+        removeBtn.classList.add('remove-btn');
+        removeBtn.textContent = 'x';
+        removeBtn.addEventListener('click', () => {
+            selectedItemsContainer.removeChild(selectedItem);
+            item.style.display = 'block';
+            updateDropbtnPlaceholder();
+        });
+
+        selectedItem.appendChild(itemLabel);
+        selectedItem.appendChild(removeBtn);
+        selectedItemsContainer.appendChild(selectedItem);
+        item.style.display = 'none';
+        updateDropbtnPlaceholder();
+    }
+
+    function updateDropbtnPlaceholder() {
+        const selectedItems = document.querySelectorAll('#selected-symptoms .selected-item span:first-child');
+        const selectedTexts = Array.from(selectedItems).map(item => item.textContent);
+        dropbtn.placeholder = selectedTexts.length > 0 ? '' : 'Select Symptoms';
+    }
+
+    function addSelectedSpecialist(item) {
+        const selectedItem = document.createElement('div');
+        selectedItem.classList.add('selected-item');
+
+        const itemLabel = document.createElement('span');
+        itemLabel.textContent = item.textContent;
+
+        const removeBtn = document.createElement('span');
+        removeBtn.classList.add('remove-btn');
+        removeBtn.textContent = 'x';
+        removeBtn.addEventListener('click', () => {
+            selectedSpecialistsContainer.removeChild(selectedItem);
+            item.style.display = 'block';
+            updateSpecialistDropbtnPlaceholder();
+        });
+
+        selectedItem.appendChild(itemLabel);
+        selectedItem.appendChild(removeBtn);
+        selectedSpecialistsContainer.appendChild(selectedItem);
+        item.style.display = 'none';
+        updateSpecialistDropbtnPlaceholder();
+    }
+
+    function updateSpecialistDropbtnPlaceholder() {
+        const selectedItems = document.querySelectorAll('#selected-specialists .selected-item span:first-child');
+        const selectedTexts = Array.from(selectedItems).map(item => item.textContent);
+        specialistDropbtn.placeholder = selectedTexts.length > 0 ? '' : 'Select Specialists';
+    }
+});
 
