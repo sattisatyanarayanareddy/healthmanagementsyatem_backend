@@ -60,14 +60,6 @@ function filterDoctors() {
         }
     }
 }
-function viewInvoice(className) {
-    document.querySelector(className).style.display = 'flex';
-    document.querySelector('body').style.overflow = 'auto';
-}
-function closeInvoice(className) {
-    document.querySelector(className).style.display = 'none';
-    document.querySelector('body').style.overflow = 'hidden';
-}
 function openPopup() {
     const popupWindow = document.getElementById("popupWindow");
     popupWindow.style.display = "flex";
@@ -121,5 +113,10 @@ document.getElementById('user-input').addEventListener('keypress', function (e) 
     }
 });
 
-
-
+const appStatusClass = document.querySelector('.appStatus');
+const appStatus = appStatusClass.innerHTML;
+if (appStatus === 'Booked') {
+    appStatusClass.classList.add();
+} else {
+    appStatusClass.classList.add();
+}
